@@ -1,0 +1,1403 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Chinese-Khmer Vocabulary Poster Studio</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Battambang:wght@400;700&family=Hanuman:wght@400;700&family=Kantumruy+Pro:wght@400;500;600;700&family=Koulen&family=Moul&family=Noto+Sans+Khmer:wght@400;700&family=Siemreap&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Liu+Jian+Mao+Cao&family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@500;900&family=Noto+Serif:wght@500;700&family=Noto+Serif+SC:wght@600;900&family=Playfair+Display:wght@500;700&family=Zhi+Mang+Xing&display=swap">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<style>
+/* Layout: CAC dashboard shell. White header with the round red badge, a left rail with an icon nav (Templates, Content, Design, Layout) beside a panel, and a gray dot-grid stage holding the poster fitted to the screen. On phones the rail docks to the bottom. */
+:root {
+  --bg: #F9FAFB; --surface: #FFFFFF; --surface-2: #F3F4F6; --field: #FFFFFF; --line: #E5E7EB;
+  --ink: #1F2937; --muted: #6B7280; --head: #111827;
+  --accent: #DC2626; --accent-ink: #FFFFFF; --accent-soft: #FEE2E2; --track: #E5E7EB; --dot: #E5E7EB;
+  --ring: rgba(220, 38, 38, .22);
+  --ok: #059669; --ok-soft: #ECFDF5; --warn: #D97706; --danger: #EF4444;
+  --shadow: 0 1px 3px rgba(17, 24, 39, .08), 0 4px 14px rgba(17, 24, 39, .06);
+  --font-kh: 'Khmer OS Battambang', 'Battambang', 'Kantumruy Pro', 'Noto Sans Khmer', sans-serif;
+  --font-lt: 'Inter', system-ui, 'Segoe UI', sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0B0F17; --surface: #111827; --surface-2: #1F2937; --field: #0B1220; --line: #2B3547;
+    --ink: #E5E7EB; --muted: #9CA3AF; --head: #FFFFFF; --accent: #EF4444; --accent-soft: #3B1517;
+    --track: #374151; --dot: #1A2230; --ring: rgba(239, 68, 68, .35); --ok: #34D399; --ok-soft: #052E22;
+    --shadow: 0 1px 3px rgba(0, 0, 0, .4), 0 4px 14px rgba(0, 0, 0, .3);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0B0F17; --surface: #111827; --surface-2: #1F2937; --field: #0B1220; --line: #2B3547;
+  --ink: #E5E7EB; --muted: #9CA3AF; --head: #FFFFFF; --accent: #EF4444; --accent-soft: #3B1517;
+  --track: #374151; --dot: #1A2230; --ring: rgba(239, 68, 68, .35); --ok: #34D399; --ok-soft: #052E22;
+  --shadow: 0 1px 3px rgba(0, 0, 0, .4), 0 4px 14px rgba(0, 0, 0, .3);
+  color-scheme: dark;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html, body { height: 100%; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--font-lt); font-size: 14px; line-height: 1.5; -webkit-font-smoothing: antialiased; overflow: hidden; }
+button, input, select { font: inherit; color: inherit; }
+button { cursor: pointer; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+[lang="km"] { font-family: var(--font-kh); letter-spacing: normal; }
+.ic { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+.app { height: 100%; display: flex; flex-direction: column; }
+
+/* Header */
+.top { flex: none; height: 60px; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-inline: 20px; background: var(--surface); border-bottom: 1px solid var(--line); }
+.brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.logo { width: 38px; height: 38px; flex: none; }
+.brand-txt { min-width: 0; line-height: 1.25; }
+.brand-kh { display: block; font-family: var(--font-kh); font-size: 15px; line-height: 1.5; color: var(--head); white-space: nowrap; }
+.brand-en { display: block; font-size: 11.5px; font-weight: 600; color: var(--muted); white-space: nowrap; }
+.app-name { padding-left: 14px; margin-left: 2px; border-left: 1px solid var(--line); font-size: 13px; font-weight: 500; color: var(--muted); white-space: nowrap; }
+.top-r { display: flex; align-items: center; gap: 12px; }
+.saved { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; color: var(--ok); background: var(--ok-soft); padding: 4px 10px; border-radius: 99px; white-space: nowrap; }
+.btn-cta { display: inline-flex; align-items: center; gap: 8px; border: 0; border-radius: 12px; background: var(--accent); color: #fff; padding: 10px 18px; font-size: 14px; font-weight: 600; white-space: nowrap; }
+.btn-cta:hover { filter: brightness(.92); }
+.btn-cta:disabled { opacity: .7; cursor: progress; }
+.btn-cta:focus-visible { outline-color: var(--head); }
+
+/* Rail */
+.main { flex: 1; min-height: 0; display: flex; }
+.rail { flex: none; width: 456px; display: flex; background: var(--surface); border-right: 1px solid var(--line); min-height: 0; }
+.nav { flex: none; width: 78px; display: flex; flex-direction: column; gap: 6px; padding: 12px 8px; border-right: 1px solid var(--line); }
+.navb { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 10px 4px; border: 0; border-radius: 12px; background: transparent; color: var(--muted); font-size: 11px; font-weight: 600; }
+.navb:hover { background: var(--surface-2); color: var(--head); }
+.navb[aria-selected="true"] { background: var(--accent); color: #fff; }
+.pane { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.pane-body { flex: 1; min-height: 0; overflow-y: auto; padding: 16px; }
+.panel { display: flex; flex-direction: column; gap: 24px; }
+.pane-title { display: flex; align-items: baseline; gap: 10px; margin: 0 0 -8px; }
+.pane-title h2 { margin: 0; font-size: 18px; font-weight: 700; color: var(--head); }
+.pane-title span { font-size: 14px; color: var(--muted); }
+.group { display: flex; flex-direction: column; gap: 10px; }
+.group-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 24px; }
+.group-head h3 { margin: 0; font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.group-head span { font-size: 12px; color: var(--muted); }
+.note { margin: 0; font-size: 12.5px; color: var(--muted); line-height: 1.5; }
+.pane-foot { flex: none; display: flex; flex-direction: column; gap: 8px; padding: 12px 16px; border-top: 1px solid var(--line); }
+.foot-row { display: flex; gap: 8px; }
+.btn { flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: var(--surface); border: 1px solid var(--line); color: var(--ink); border-radius: 12px; padding: 9px 12px; font-size: 13px; font-weight: 600; }
+.btn:hover { background: var(--surface-2); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+.btn.primary:hover { filter: brightness(.92); background: var(--accent); }
+.btn.sm { flex: none; padding: 5px 10px; font-size: 12px; border-radius: 8px; }
+.btn.danger { color: var(--danger); }
+
+/* Fields */
+.fields { display: flex; flex-direction: column; gap: 12px; }
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field > label, .lab { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 500; }
+.tag { font-size: 10px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 2px 6px; border-radius: 4px; background: var(--accent-soft); color: var(--accent); }
+.inp { width: 100%; height: 44px; padding: 0 12px; border: 1px solid var(--line); border-radius: 8px; background: var(--field); color: var(--ink); font-size: 16px; outline: none; }
+.inp:hover { border-color: var(--muted); }
+.inp:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--ring); }
+.inp.sm { height: 36px; font-size: 14px; }
+.chips-n { display: flex; gap: 6px; flex-wrap: wrap; }
+.cn { min-width: 38px; height: 34px; padding: 0 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); font-size: 13px; font-weight: 600; color: var(--muted); }
+.cn:hover { border-color: var(--muted); }
+.cn[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+/* Option tiles */
+.presets { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.preset { display: flex; align-items: center; gap: 10px; min-width: 0; text-align: left; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 8px 10px; }
+.preset:hover, .opt:hover, .tpl:hover { border-color: var(--muted); }
+.preset[aria-pressed="true"], .opt[aria-checked="true"], .tpl[aria-pressed="true"] { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); background: var(--accent-soft); }
+.p-zh { flex: none; min-width: 40px; text-align: center; font-family: 'Noto Serif SC', serif; font-weight: 600; font-size: 20px; line-height: 1.2; color: var(--head); }
+.p-meta { display: flex; flex-direction: column; min-width: 0; }
+.p-km { font-family: var(--font-kh); font-size: 14px; line-height: 1.7; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.p-en { font-size: 11.5px; color: var(--muted); line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.opts { display: grid; gap: 8px; }
+.opts.c2 { grid-template-columns: 1fr 1fr; }
+.opts.c3 { grid-template-columns: repeat(3, 1fr); }
+.opts.c4 { grid-template-columns: repeat(4, 1fr); }
+.opt { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 6px; min-width: 0; padding: 8px 6px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; text-align: center; }
+.opt .nm { font-size: 11.5px; font-weight: 600; color: var(--head); line-height: 1.3; }
+.opt .sub { font-size: 11px; color: var(--muted); line-height: 1.3; }
+.opt svg.mini { color: var(--muted); }
+.opt[aria-checked="true"] svg.mini { color: var(--accent); }
+.thumb { width: 100%; aspect-ratio: 3 / 4; border-radius: 4px; border: 1px solid var(--line); background-size: 100% 100%; background-position: center; background-repeat: no-repeat; display: flex; align-items: center; justify-content: center; color: var(--muted); }
+.thumb.cover { background-size: cover; }
+.ratio { display: block; border: 2px solid currentColor; border-radius: 3px; color: var(--muted); }
+.opt[aria-checked="true"] .ratio { color: var(--accent); }
+.fprev { font-size: 22px; line-height: 1.6; white-space: nowrap; color: var(--head); }
+
+.seg { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 4px; padding: 4px; background: var(--surface-2); border: 1px solid var(--line); border-radius: 12px; }
+.seg button { border: 0; background: transparent; color: var(--muted); border-radius: 8px; padding: 7px 6px; font-size: 12.5px; font-weight: 600; }
+.seg button[aria-checked="true"] { background: var(--surface); color: var(--head); box-shadow: var(--shadow); }
+
+/* Colours */
+.colors { display: flex; flex-direction: column; gap: 10px; }
+.crow { display: flex; align-items: center; justify-content: space-between; gap: 8px 12px; flex-wrap: wrap; }
+.crow > span { font-size: 13px; }
+.chips { display: flex; align-items: center; gap: 5px; }
+.chip { position: relative; width: 20px; height: 20px; padding: 0; border-radius: 4px; border: 1px solid var(--line); background: var(--c, #fff); }
+.chip:hover { transform: translateY(-1px); }
+.chip[aria-pressed="true"] { box-shadow: 0 0 0 2px var(--surface), 0 0 0 4px var(--accent); }
+.chip.custom { background: conic-gradient(#DC2626, #E4572E, #9CA3AF, #2B3294, #1F2937, #DC2626); }
+.chip.custom.on { background: var(--c); }
+.chip.custom input { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; border: 0; padding: 0; }
+.chip.custom:focus-within { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* Sliders */
+.sliders { display: flex; flex-direction: column; gap: 14px; }
+.slider-top { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; margin-bottom: 2px; }
+.slider-top label { font-size: 13px; }
+.slider-top output { font-size: 12px; font-weight: 600; color: var(--head); background: var(--surface-2); padding: 1px 8px; border-radius: 4px; font-variant-numeric: tabular-nums; }
+input[type="range"] { -webkit-appearance: none; appearance: none; width: 100%; height: 22px; margin: 0; background: transparent; cursor: pointer; }
+input[type="range"]::-webkit-slider-runnable-track { height: 6px; border-radius: 99px; background: linear-gradient(to right, var(--accent) var(--p, 50%), var(--track) var(--p, 50%)); }
+input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 18px; height: 18px; margin-top: -6px; border-radius: 50%; background: var(--surface); border: 2px solid var(--accent); box-shadow: var(--shadow); }
+input[type="range"]::-moz-range-track { height: 6px; border-radius: 99px; background: var(--track); }
+input[type="range"]::-moz-range-progress { height: 6px; border-radius: 99px; background: var(--accent); }
+input[type="range"]::-moz-range-thumb { width: 14px; height: 14px; border-radius: 50%; background: var(--surface); border: 2px solid var(--accent); }
+input[type="range"]:focus-visible { outline: none; }
+input[type="range"]:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 4px var(--ring); }
+.switch-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 14px; background: var(--surface-2); border: 1px solid var(--line); border-radius: 12px; }
+.switch-row b { display: block; font-size: 13px; font-weight: 600; }
+.switch-row small { display: block; font-size: 12px; color: var(--muted); line-height: 1.4; }
+.switch { position: relative; flex: none; width: 42px; height: 24px; }
+.switch input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
+.switch i { position: absolute; inset: 0; border-radius: 99px; background: var(--track); transition: background .15s; pointer-events: none; }
+.switch i::after { content: ""; position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; border-radius: 50%; background: #fff; box-shadow: 0 1px 3px rgba(17, 24, 39, .3); transition: transform .15s; }
+.switch input:checked + i { background: var(--accent); }
+.switch input:checked + i::after { transform: translateX(18px); }
+.switch input:focus-visible + i { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* Templates and library */
+.tgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.tpl { display: flex; flex-direction: column; gap: 6px; padding: 8px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); text-align: left; min-width: 0; }
+.tbox { height: 176px; display: flex; align-items: center; justify-content: center; background: var(--surface-2); border-radius: 8px; overflow: hidden; }
+.tscale { position: relative; flex: none; }
+.tscale .poster { pointer-events: none; }
+.tpl .nm { font-size: 12.5px; font-weight: 600; color: var(--head); }
+.tpl .sub { font-size: 11.5px; color: var(--muted); }
+.mine { display: flex; flex-direction: column; gap: 6px; }
+.mrow { display: flex; align-items: center; gap: 8px; padding: 6px 6px 6px 12px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
+.mrow b { flex: 1; min-width: 0; font-size: 13px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.row2 { display: flex; gap: 8px; }
+.lib { display: flex; flex-wrap: wrap; gap: 8px; }
+.li { position: relative; width: 64px; height: 64px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface-2) center / cover no-repeat; padding: 0; overflow: hidden; }
+.li.contain { background-size: 70%; background-repeat: no-repeat; }
+.li.sel { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent); }
+.li .pick { position: absolute; inset: 0; width: 100%; height: 100%; padding: 0; border: 0; background: transparent; }
+.li .x { position: absolute; top: 2px; right: 2px; width: 18px; height: 18px; border-radius: 50%; border: 0; background: rgba(17, 24, 39, .75); color: #fff; font-size: 12px; line-height: 18px; padding: 0; }
+.li-add { display: flex; align-items: center; justify-content: center; width: 64px; height: 64px; border: 1.5px dashed var(--muted); border-radius: 8px; color: var(--muted); background: transparent; }
+.li-add:hover { color: var(--accent); border-color: var(--accent); }
+
+/* Stage */
+.stage { position: relative; flex: 1; min-width: 0; min-height: 0; background: var(--bg); }
+.scroll { position: absolute; inset: 0; overflow: auto; background-image: radial-gradient(var(--dot) 1.4px, transparent 1.4px); background-size: 22px 22px; }
+.canvas { min-height: 100%; display: flex; padding: 64px 16px 88px; }
+.frame { position: relative; flex: none; margin: auto; border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); outline: 1px solid var(--line); background: #fff; }
+.hint { position: absolute; top: 16px; left: 16px; z-index: 2; display: inline-flex; align-items: center; gap: 8px; background: var(--surface); border: 1px solid var(--line); border-radius: 99px; padding: 6px 12px; font-size: 12px; color: var(--muted); box-shadow: var(--shadow); pointer-events: none; }
+.hint i { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+.zoombar { position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%); z-index: 2; display: flex; align-items: center; gap: 4px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 4px; box-shadow: var(--shadow); white-space: nowrap; }
+.zb { display: inline-flex; align-items: center; justify-content: center; min-width: 34px; height: 34px; padding: 0 8px; border: 0; border-radius: 8px; background: transparent; color: var(--head); font-size: 13px; font-weight: 600; }
+.zb:hover { background: var(--surface-2); }
+.zread { min-width: 48px; text-align: center; font-size: 13px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.zinfo { margin-left: 4px; padding: 0 10px 0 12px; border-left: 1px solid var(--line); font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.toast { position: absolute; left: 50%; bottom: 72px; transform: translateX(-50%); z-index: 4; max-width: calc(100% - 32px); background: #111827; color: #fff; border-radius: 12px; padding: 10px 16px; font-size: 13px; box-shadow: var(--shadow); }
+.modal { position: fixed; inset: 0; z-index: 50; display: flex; align-items: center; justify-content: center; padding: 16px; background: rgba(17, 24, 39, .7); }
+.modal-card { width: 100%; max-width: 560px; max-height: 100%; display: flex; flex-direction: column; background: var(--surface); color: var(--ink); border-radius: 16px; overflow: hidden; box-shadow: var(--shadow); }
+.modal-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 20px; border-bottom: 1px solid var(--line); }
+.modal-head h2 { margin: 0; font-size: 16px; font-weight: 700; color: var(--head); }
+.modal-x { width: 34px; height: 34px; border: 0; border-radius: 8px; background: transparent; color: var(--muted); display: inline-flex; align-items: center; justify-content: center; }
+.modal-x:hover { background: var(--surface-2); color: var(--head); }
+.modal-view { flex: 1; min-height: 0; overflow: auto; padding: 20px; background: var(--surface-2); display: flex; justify-content: center; }
+.modal-view img { display: block; max-width: 100%; max-height: 56vh; width: auto; height: auto; border-radius: 8px; box-shadow: var(--shadow); border: 1px solid var(--line); }
+.modal-foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 20px; border-top: 1px solid var(--line); flex-wrap: wrap; }
+.modal-foot p { margin: 0; font-size: 12.5px; color: var(--muted); flex: 1; min-width: 180px; }
+
+/* Poster artwork (independent of page theme) */
+.poster { position: absolute; left: 0; top: 0; transform-origin: 0 0; overflow: hidden; font-family: var(--font-lt); color: #111827; }
+.card { position: absolute; overflow: hidden; background-repeat: no-repeat; }
+.card > div { position: absolute; }
+.veil, .stack { inset: 0; }
+.stack { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.t { position: relative; display: inline-block; margin: 0; padding: 0 .12em; border-radius: 4px; outline: none; cursor: text; white-space: nowrap; letter-spacing: 0; min-width: 24px; min-height: 1em; }
+.poster:not(.exporting) .t:hover { box-shadow: 0 0 0 1px rgba(220, 38, 38, .55); }
+.poster:not(.exporting) .t:focus { box-shadow: 0 0 0 2px rgba(220, 38, 38, .85); }
+.poster:not(.exporting) .card.multi.active { box-shadow: inset 0 0 0 3px rgba(220, 38, 38, .9); }
+.wm, .badge, .deco { pointer-events: none; }
+
+@media (max-width: 860px) {
+  .top { padding-inline: 16px; height: 56px; }
+  .app-name, .saved span { display: none; }
+  .saved { padding: 6px; }
+  .main { flex-direction: column; }
+  .rail { width: auto; flex-direction: column; border-right: 0; border-top: 1px solid var(--line); order: 2; }
+  .rail.open { height: 52%; }
+  .rail:not(.open) .pane { display: none; }
+  .nav { width: auto; flex-direction: row; border-right: 0; border-bottom: 1px solid var(--line); padding: 8px; }
+  .rail:not(.open) .nav { border-bottom: 0; }
+  .navb { flex: 1; flex-direction: row; justify-content: center; gap: 6px; padding: 8px 4px; }
+  .canvas { padding: 16px 16px 64px; }
+  .hint, .zinfo { display: none; }
+  .toast { bottom: 64px; }
+}
+@media (max-width: 480px) {
+  .brand-en { display: none; }
+  .navb .ic { display: none; }
+  .btn-cta { padding: 9px 14px; }
+  .presets, .tgrid { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+<div class="app">
+  <header class="top">
+    <div class="brand">
+      <svg class="logo" viewBox="0 0 120 120" role="img" aria-label="CAC Academy">
+        <circle cx="60" cy="60" r="58" fill="#DC2626"/>
+        <circle cx="60" cy="60" r="49" fill="none" stroke="#fff" stroke-width="2.5"/>
+        <text x="60" y="68" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="32" font-weight="800" fill="#fff">CAC</text>
+        <text x="60" y="86" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="700" letter-spacing="2" fill="#fff">ACADEMY</text>
+      </svg>
+      <div class="brand-txt">
+        <span class="brand-kh" lang="km">សាលារៀនភាសាចិន</span>
+        <span class="brand-en">Chinese Academy Cambodia</span>
+      </div>
+      <span class="app-name">Poster Studio</span>
+    </div>
+    <div class="top-r">
+      <span class="saved" id="saveState" title="Your work saves automatically in this browser"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span id="saveText">Saved in this browser</span></span>
+      <button class="btn-cta" id="exportBtn" type="button">
+        <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg>
+        <span>Export PNG</span>
+      </button>
+    </div>
+  </header>
+
+  <div class="main">
+    <aside class="rail" id="rail" aria-label="Poster controls">
+      <nav class="nav" role="tablist" aria-label="Control sections" aria-orientation="vertical">
+        <button class="navb" role="tab" id="tab-templates" aria-controls="panel-templates" aria-selected="true" type="button">
+          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg>
+          <span>Templates</span>
+        </button>
+        <button class="navb" role="tab" id="tab-content" aria-controls="panel-content" aria-selected="false" tabindex="-1" type="button">
+          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h10M4 18h14"/></svg>
+          <span>Content</span>
+        </button>
+        <button class="navb" role="tab" id="tab-design" aria-controls="panel-design" aria-selected="false" tabindex="-1" type="button">
+          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18c1.4 0 2-.9 2-1.8 0-1.4-1.2-1.7-1.2-2.9 0-1 .8-1.8 1.9-1.8H17a4 4 0 0 0 4-4c0-4-4-7.5-9-7.5Z"/><circle cx="8" cy="11" r="1"/><circle cx="12" cy="7.5" r="1"/><circle cx="16.5" cy="9.5" r="1"/></svg>
+          <span>Design</span>
+        </button>
+        <button class="navb" role="tab" id="tab-layout" aria-controls="panel-layout" aria-selected="false" tabindex="-1" type="button">
+          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h9M19 8h1M4 16h1M11 16h9"/><circle cx="16" cy="8" r="2.2"/><circle cx="8" cy="16" r="2.2"/></svg>
+          <span>Layout</span>
+        </button>
+      </nav>
+
+      <div class="pane">
+        <div class="pane-body">
+          <!-- TEMPLATES -->
+          <section class="panel" role="tabpanel" id="panel-templates" aria-labelledby="tab-templates">
+            <div class="pane-title"><h2>Templates</h2><span lang="km">គំរូ</span></div>
+            <p class="note">Pick a ready-made look. It keeps your words and changes the design, size and card layout. Everything you change saves automatically in this browser.</p>
+            <div class="group">
+              <div class="group-head"><h3>CAC templates</h3><span id="tplCount"></span></div>
+              <div class="tgrid" id="tplGrid"></div>
+            </div>
+            <div class="group">
+              <div class="group-head"><h3>My templates</h3></div>
+              <div class="row2">
+                <input class="inp sm" id="tplName" type="text" maxlength="40" placeholder="Name this design" autocomplete="off" aria-label="Template name">
+                <button class="btn primary sm" id="tplSave" type="button">Save design</button>
+              </div>
+              <div class="mine" id="mineList"></div>
+            </div>
+          </section>
+
+          <!-- CONTENT -->
+          <section class="panel" role="tabpanel" id="panel-content" aria-labelledby="tab-content" hidden>
+            <div class="pane-title"><h2>Content</h2><span lang="km">មាតិកា</span></div>
+            <div class="group" id="cardsGroup" hidden>
+              <div class="group-head"><h3>Card to edit</h3><button class="btn sm" id="fillAll" type="button">Fill all with presets</button></div>
+              <div class="chips-n" id="cardChips"></div>
+            </div>
+            <div class="group">
+              <div class="group-head"><h3>Quick presets</h3><span>Tap to load a word</span></div>
+              <div class="presets" id="presets"></div>
+            </div>
+            <div class="group">
+              <div class="group-head"><h3>Poster text</h3><span>Top to bottom</span></div>
+              <div class="fields">
+                <div class="field"><label for="in-khmer"><span class="tag">Khmer</span>Title</label><input class="inp" id="in-khmer" type="text" lang="km" autocomplete="off" spellcheck="false"></div>
+                <div class="field"><label for="in-pinyin"><span class="tag">Pinyin</span>Pronunciation</label><input class="inp" id="in-pinyin" type="text" autocomplete="off" spellcheck="false"></div>
+                <div class="field"><label for="in-chinese"><span class="tag">中文</span>Chinese characters</label><input class="inp" id="in-chinese" type="text" lang="zh" autocomplete="off" spellcheck="false"></div>
+                <div class="field"><label for="in-phonetic"><span class="tag">Khmer</span>Phonetic guide</label><input class="inp" id="in-phonetic" type="text" lang="km" autocomplete="off" spellcheck="false"></div>
+              </div>
+            </div>
+          </section>
+
+          <!-- DESIGN -->
+          <section class="panel" role="tabpanel" id="panel-design" aria-labelledby="tab-design" hidden>
+            <div class="pane-title"><h2>Design</h2><span lang="km">រចនា</span></div>
+            <div class="group">
+              <div class="group-head"><h3>Backdrop</h3><span>Text colours follow it</span></div>
+              <div class="opts c3" id="bgOpts" role="radiogroup" aria-label="Backdrop"></div>
+            </div>
+            <div class="group" id="gSolid" hidden>
+              <div class="group-head"><h3>Backdrop colour</h3></div>
+              <div class="colors" id="solidColor"></div>
+            </div>
+            <div class="group" id="gImage" hidden>
+              <div class="group-head"><h3>Your photo</h3><span>Saved in this browser</span></div>
+              <div class="lib" id="libBg"></div>
+              <div class="colors" id="veilColor"></div>
+              <div class="sliders" id="veilSl"></div>
+              <p class="note">The veil keeps text readable on busy photos.</p>
+            </div>
+            <div class="group">
+              <div class="group-head"><h3>Khmer font</h3></div>
+              <div class="opts c2" id="khFonts" role="radiogroup" aria-label="Khmer font"></div>
+              <div class="seg" id="kwSeg" role="radiogroup" aria-label="Khmer weight"></div>
+            </div>
+            <div class="group">
+              <div class="group-head"><h3>Chinese font</h3></div>
+              <div class="opts c2" id="zhFonts" role="radiogroup" aria-label="Chinese font"></div>
+            </div>
+            <div class="group">
+              <div class="group-head"><h3>Pinyin font</h3></div>
+              <div class="opts c3" id="pyFonts" role="radiogroup" aria-label="Pinyin font"></div>
+              <div class="seg" id="pwSeg" role="radiogroup" aria-label="Pinyin weight"></div>
+            </div>
+            <div class="group">
+              <div class="group-head"><h3>Text colours</h3><span>CAC palette or custom</span></div>
+              <div class="colors" id="colors"></div>
+              <div class="seg" id="shSeg" role="radiogroup" aria-label="Text shadow"></div>
+            </div>
+            <div class="group">
+              <div class="group-head"><h3>Logo</h3><span>Used for watermark and badge</span></div>
+              <div class="lib" id="libLogo"></div>
+            </div>
+            <div class="group">
+              <div class="group-head"><h3>Watermark</h3></div>
+              <div class="seg" id="wmSeg" role="radiogroup" aria-label="Watermark type"></div>
+              <div class="field" id="wmTextRow" hidden><input class="inp sm" id="wmText" type="text" maxlength="40" aria-label="Watermark text" autocomplete="off"></div>
+              <div class="sliders" id="wmSl"></div>
+            </div>
+            <div class="group">
+              <div class="group-head"><h3>Logo badge</h3><span>Small logo on the card</span></div>
+              <div class="opts c3" id="badgeOpts" role="radiogroup" aria-label="Badge position"></div>
+              <div class="sliders" id="badgeSl"></div>
+            </div>
+          </section>
+
+          <!-- LAYOUT -->
+          <section class="panel" role="tabpanel" id="panel-layout" aria-labelledby="tab-layout" hidden>
+            <div class="pane-title"><h2>Layout</h2><span lang="km">ប្លង់</span></div>
+            <div class="group">
+              <div class="group-head"><h3>Canvas size</h3><span id="fmtInfo"></span></div>
+              <div class="opts c3" id="fmtOpts" role="radiogroup" aria-label="Canvas size"></div>
+            </div>
+            <div class="group">
+              <div class="group-head"><h3>Cards on the poster</h3><span>Make a lesson sheet</span></div>
+              <div class="opts c4" id="colOpts" role="radiogroup" aria-label="Cards on the poster"></div>
+            </div>
+            <div class="group">
+              <div class="group-head"><h3>Text layout</h3></div>
+              <div class="opts c4" id="layOpts" role="radiogroup" aria-label="Text layout"></div>
+            </div>
+            <div class="group">
+              <div class="group-head"><h3>Text size</h3><button class="btn sm" id="resetLayout" type="button">Reset</button></div>
+              <div class="sliders" id="sizeSl"></div>
+            </div>
+            <div class="group">
+              <div class="group-head"><h3>Position</h3></div>
+              <div class="sliders" id="posSl"></div>
+            </div>
+            <div class="group" id="gGutter" hidden>
+              <div class="group-head"><h3>Gutter between cards</h3></div>
+              <div class="sliders" id="gutSl"></div>
+              <div class="colors" id="gutColor"></div>
+            </div>
+            <div class="switch-row">
+              <div><b>Shrink long words to fit</b><small>Keeps every line inside its card. The size above becomes the maximum.</small></div>
+              <label class="switch"><input type="checkbox" id="fitToggle" role="switch" aria-label="Shrink long words to fit"><i></i></label>
+            </div>
+          </section>
+        </div>
+
+        <div class="pane-foot">
+          <p class="note" id="footNote">Auto-saved. Your last design and words are here next time you open this page.</p>
+          <div class="foot-row">
+            <button class="btn" id="resetBtn" type="button"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.6-5.9M4 4v4h4"/></svg><span>Reset all</span></button>
+            <button class="btn" id="copyBtn" type="button"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h8"/></svg><span>Copy data</span></button>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="stage">
+      <div class="hint"><i></i>Click any text on the poster to edit it</div>
+      <div class="scroll" id="scroll">
+        <div class="canvas">
+          <div class="frame" id="frame"><div class="poster" id="poster"></div></div>
+        </div>
+      </div>
+      <div class="zoombar" role="group" aria-label="Zoom">
+        <button class="zb" id="zOut" type="button" aria-label="Zoom out"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/></svg></button>
+        <span class="zread" id="zRead">100%</span>
+        <button class="zb" id="zIn" type="button" aria-label="Zoom in"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5v14"/></svg></button>
+        <button class="zb" id="zFit" type="button">Fit</button>
+        <span class="zinfo" id="zInfo"></span>
+      </div>
+      <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+    </main>
+  </div>
+</div>
+
+<input type="file" id="fileBg" accept="image/*" hidden>
+<input type="file" id="fileLogo" accept="image/*" hidden>
+
+<div class="modal" id="modal" hidden>
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-head"><h2 id="modalTitle">Your poster is ready</h2><button class="modal-x" id="modalX" type="button" aria-label="Close"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+    <div class="modal-view"><img id="modalImg" alt="Exported poster preview"></div>
+    <div class="modal-foot">
+      <p id="modalHint"></p>
+      <button class="btn" id="copyImgBtn" type="button" style="flex:none">Copy image</button>
+      <button class="btn-cta" id="saveBtn" type="button"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg>Save PNG</button>
+    </div>
+  </div>
+</div>
+<script>
+(() => {
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const clone = (o) => JSON.parse(JSON.stringify(o));
+  const uid = () => Math.random().toString(36).slice(2, 9);
+  const FIELDS = ['khmer', 'pinyin', 'chinese', 'phonetic'];
+
+  const PRESETS = [
+    { name: 'Study / Learn', khmer: 'រៀនសូត្រ', pinyin: 'xuéxí', chinese: '学习', phonetic: 'ស្ងែរ ស៊ី' },
+    { name: 'Go to work', khmer: 'ទៅធ្វើការ', pinyin: 'qù shàng bān', chinese: '去上班', phonetic: 'ឈី ស្ហាង ប៉ាន' },
+    { name: 'Eat meal', khmer: 'ញ៉ាំបាយ', pinyin: 'chī fàn', chinese: '吃饭', phonetic: 'ឆឺ ហ្វាន់' },
+    { name: 'Go home', khmer: 'ទៅផ្ទះ', pinyin: 'huí jiā', chinese: '回家', phonetic: 'ហ៊ុយ ជៀ' },
+    { name: 'Thank you', khmer: 'អរគុណ', pinyin: 'xiè xie', chinese: '谢谢', phonetic: 'សៀ សៀ' },
+    { name: 'Good morning', khmer: 'អរុណសួស្តី', pinyin: 'zǎo shang hǎo', chinese: '早上好', phonetic: 'ចាវ ស្ហាង ហាវ' }
+  ];
+
+  const KF = {
+    moul: { name: 'Moul', sub: 'Ceremonial', css: "'Moul', 'Khmer OS Muol', serif", bold: false },
+    koulen: { name: 'Koulen', sub: 'Heavy display', css: "'Koulen', 'Moul', serif", bold: false },
+    kantumruy: { name: 'Kantumruy Pro', sub: 'Modern sans', css: "'Kantumruy Pro', 'Noto Sans Khmer', sans-serif", bold: true },
+    battambang: { name: 'Battambang', sub: 'Soft text', css: "'Battambang', 'Noto Sans Khmer', sans-serif", bold: true },
+    hanuman: { name: 'Hanuman', sub: 'Editorial serif', css: "'Hanuman', serif", bold: true },
+    siemreap: { name: 'Siemreap', sub: 'School style', css: "'Siemreap', 'Khmer OS Siemreap', sans-serif", bold: false }
+  };
+  const CF = {
+    mashan: { name: 'Ma Shan Zheng', sub: 'Brush', css: "'Ma Shan Zheng', 'Noto Serif SC', cursive", w: 400 },
+    zhimang: { name: 'Zhi Mang Xing', sub: 'Running cursive', css: "'Zhi Mang Xing', 'Noto Serif SC', cursive", w: 400 },
+    liujian: { name: 'Liu Jian Mao Cao', sub: 'Wild cursive', css: "'Liu Jian Mao Cao', 'Noto Serif SC', cursive", w: 400 },
+    notoserif: { name: 'Noto Serif SC', sub: 'Heavy print', css: "'Noto Serif SC', serif", w: 900 },
+    notosans: { name: 'Noto Sans SC', sub: 'Heavy sans', css: "'Noto Sans SC', sans-serif", w: 900 }
+  };
+  const PF = {
+    sans: { name: 'Sans', css: "'Inter', sans-serif" },
+    serif: { name: 'Serif', css: "'Noto Serif', serif" },
+    display: { name: 'Display', css: "'Playfair Display', serif" }
+  };
+  const BGS = [['wall', 'Ink wall'], ['mist', 'Mountain mist'], ['paper', 'Clean paper'], ['rose', 'Rose frame'], ['redframe', 'Red frame'], ['grid', 'Soft grid'], ['crimson', 'Crimson'], ['charcoal', 'Charcoal'], ['solid', 'Solid colour'], ['image', 'Your photo']];
+  const DARK_BG = { crimson: true, charcoal: true };
+  const INK = {
+    wall: { khmer: '#B91C1C', pinyin: '#111827', chinese: '#111827', phonetic: '#2B3294' },
+    mist: { khmer: '#DC2626', pinyin: '#111827', chinese: '#111827', phonetic: '#1F2937' },
+    paper: { khmer: '#DC2626', pinyin: '#1F2937', chinese: '#111827', phonetic: '#2B3294' },
+    rose: { khmer: '#E4572E', pinyin: '#111827', chinese: '#111827', phonetic: '#E4572E' },
+    redframe: { khmer: '#DC2626', pinyin: '#1F2937', chinese: '#111827', phonetic: '#2B3294' },
+    grid: { khmer: '#DC2626', pinyin: '#1F2937', chinese: '#111827', phonetic: '#1F2937' },
+    crimson: { khmer: '#FFFFFF', pinyin: '#FEE2E2', chinese: '#FFFFFF', phonetic: '#FEE2E2' },
+    charcoal: { khmer: '#EF4444', pinyin: '#E5E7EB', chinese: '#FFFFFF', phonetic: '#E5E7EB' },
+    solid: { khmer: '#DC2626', pinyin: '#1F2937', chinese: '#111827', phonetic: '#1F2937' },
+    image: { khmer: '#DC2626', pinyin: '#111827', chinese: '#111827', phonetic: '#1F2937' }
+  };
+  const PALETTE = [['#DC2626', 'Crimson'], ['#B91C1C', 'Deep crimson'], ['#E4572E', 'Orange'], ['#1F2937', 'Charcoal'], ['#111827', 'Black'], ['#FFFFFF', 'White'], ['#9CA3AF', 'Gray'], ['#2B3294', 'Blue']];
+  const PAL_HEX = PALETTE.map((p) => p[0]);
+
+  const FORMATS = {
+    poster: { name: 'Poster', ratio: '2:3', w: 580, h: 870, out: 1080 },
+    portrait: { name: 'Portrait', ratio: '4:5', w: 580, h: 725, out: 1080 },
+    square: { name: 'Square', ratio: '1:1', w: 580, h: 580, out: 1080 },
+    story: { name: 'Story', ratio: '9:16', w: 450, h: 800, out: 1080 },
+    wide: { name: 'Wide', ratio: '16:9', w: 800, h: 450, out: 1920 }
+  };
+  const COLLAGES = {
+    single: { name: 'Single', slots: [[0, 0, 1, 1]] },
+    v2: { name: '2 across', slots: [[0, 0, .5, 1], [.5, 0, .5, 1]] },
+    h2: { name: '2 stacked', slots: [[0, 0, 1, .5], [0, .5, 1, .5]] },
+    g4: { name: '2 × 2', slots: [[0, 0, .5, .5], [.5, 0, .5, .5], [0, .5, .5, .5], [.5, .5, .5, .5]] },
+    big3: { name: '1 + 3', slots: [[0, 0, .66, 1], [.66, 0, .34, 1 / 3], [.66, 1 / 3, .34, 1 / 3], [.66, 2 / 3, .34, 1 / 3]] },
+    t23: { name: '2 + 3', slots: [[0, 0, .5, .55], [.5, 0, .5, .55], [0, .55, 1 / 3, .45], [1 / 3, .55, 1 / 3, .45], [2 / 3, .55, 1 / 3, .45]] },
+    g6: { name: '2 × 3', slots: [[0, 0, .5, 1 / 3], [.5, 0, .5, 1 / 3], [0, 1 / 3, .5, 1 / 3], [.5, 1 / 3, .5, 1 / 3], [0, 2 / 3, .5, 1 / 3], [.5, 2 / 3, .5, 1 / 3]] }
+  };
+  const LAYOUTS = {
+    classic: { name: 'Classic', order: ['khmer', 'pinyin', 'chinese', 'phonetic'] },
+    phoneticTop: { name: 'Phonetic first', order: ['khmer', 'phonetic', 'chinese', 'pinyin'] },
+    hero: { name: 'Chinese hero', order: ['pinyin', 'chinese', 'khmer', 'phonetic'], mul: { chinese: 1.4, khmer: .85, phonetic: .9 } },
+    khmerHero: { name: 'Khmer hero', order: ['khmer', 'chinese', 'pinyin', 'phonetic'], mul: { khmer: 1.3, chinese: .85 } },
+    banner: { name: 'Top banner', order: ['khmer', 'pinyin', 'chinese', 'phonetic'], band: true },
+    bar: { name: 'Side bar', order: ['khmer', 'pinyin', 'chinese', 'phonetic'], left: true, bar: true },
+    split: { name: 'Split', split: true, mul: { chinese: .95 } }
+  };
+  const SHADOWS = { none: '', glow: '0 1px 2px rgba(255,255,255,.85)', drop: '1px 2px 3px rgba(0,0,0,.28)' };
+
+  const BASE_D = {
+    layout: 'classic', bg: 'wall', bgColor: '#F9FAFB', img: '', veil: { color: '#FFFFFF', op: 55 },
+    colors: clone(INK.wall), kf: 'koulen', kw: 700, cf: 'mashan', pf: 'sans', pw: 500,
+    sizes: { khmer: 70, pinyin: 44, chinese: 128, phonetic: 46 }, y: 0, gap: 14, fit: true, shadow: 'drop',
+    logo: 'cac', wm: { mode: 'logo', text: 'Chinese Academy Cambodia', op: 14, size: 56 }, badge: { pos: 'none', size: 56 }
+  };
+  function mkD(over) {
+    const d = clone(BASE_D);
+    const o = over || {};
+    Object.keys(o).forEach((k) => {
+      if (o[k] && typeof o[k] === 'object') Object.assign(d[k], o[k]); else d[k] = o[k];
+    });
+    if (!o.colors) d.colors = clone(INK[d.bg] || INK.paper);
+    if (!o.shadow) d.shadow = DARK_BG[d.bg] ? 'none' : (d.bg === 'wall' ? 'drop' : 'glow');
+    return d;
+  }
+  const NOWM = { mode: 'none' };
+  const TPL = [
+    { id: 'ink-wall', name: 'CAC Ink Wall', sub: 'Poster 2:3', format: 'poster', collage: 'single', d: {} },
+    { id: 'rose', name: 'Rose Frame', sub: 'Square', format: 'square', collage: 'single', d: { bg: 'rose', layout: 'phoneticTop', kf: 'kantumruy', kw: 700, cf: 'notoserif', pf: 'serif', pw: 500, sizes: { khmer: 58, pinyin: 34, chinese: 112, phonetic: 40 }, wm: { mode: 'text', text: 'Chinese Academy Cambodia', op: 10, size: 50 } } },
+    { id: 'banner', name: 'Crimson Banner', sub: 'Portrait 4:5', format: 'portrait', collage: 'single', d: { bg: 'paper', layout: 'banner', kf: 'kantumruy', kw: 700, cf: 'notoserif', sizes: { khmer: 54, pinyin: 40, chinese: 124, phonetic: 44 }, wm: NOWM, badge: { pos: 'bc', size: 56 } } },
+    { id: 'charcoal', name: 'Charcoal Brush', sub: 'Poster 2:3', format: 'poster', collage: 'single', d: { bg: 'charcoal', kf: 'moul', cf: 'mashan', pf: 'serif', sizes: { khmer: 62, pinyin: 40, chinese: 130, phonetic: 42 }, wm: { mode: 'logo', op: 10, size: 56 } } },
+    { id: 'red-frame', name: 'Red Frame', sub: 'Portrait 4:5', format: 'portrait', collage: 'single', d: { bg: 'redframe', kf: 'moul', cf: 'notoserif', pf: 'serif', pw: 500, sizes: { khmer: 58, pinyin: 38, chinese: 120, phonetic: 42 }, wm: NOWM, badge: { pos: 'bc', size: 52 } } },
+    { id: 'crimson-hero', name: 'Crimson Hero', sub: 'Square', format: 'square', collage: 'single', d: { bg: 'crimson', layout: 'hero', kf: 'kantumruy', kw: 700, cf: 'notosans', sizes: { khmer: 60, pinyin: 40, chinese: 120, phonetic: 44 }, wm: { mode: 'logo', op: 12, size: 70 } } },
+    { id: 'bar', name: 'Editorial Bar', sub: 'Square', format: 'square', collage: 'single', d: { bg: 'grid', layout: 'bar', kf: 'kantumruy', kw: 700, cf: 'notoserif', sizes: { khmer: 58, pinyin: 38, chinese: 118, phonetic: 42 }, wm: NOWM, badge: { pos: 'br', size: 52 } } },
+    { id: 'split', name: 'Split Wide', sub: 'Wide 16:9', format: 'wide', collage: 'single', d: { bg: 'paper', layout: 'split', kf: 'kantumruy', kw: 700, cf: 'notoserif', sizes: { khmer: 54, pinyin: 38, chinese: 130, phonetic: 42 }, wm: NOWM, badge: { pos: 'br', size: 48 } } },
+    { id: 'mist', name: 'Mountain Mist', sub: 'Poster 2:3', format: 'poster', collage: 'single', d: { bg: 'mist', kf: 'moul', cf: 'mashan', pf: 'display', sizes: { khmer: 66, pinyin: 40, chinese: 120, phonetic: 44 }, wm: NOWM } },
+    { id: 'story', name: 'Story Crimson', sub: 'Story 9:16', format: 'story', collage: 'single', d: { bg: 'crimson', layout: 'khmerHero', kf: 'koulen', cf: 'notosans', sizes: { khmer: 66, pinyin: 40, chinese: 128, phonetic: 44 }, wm: { mode: 'logo', op: 12, size: 80 }, badge: { pos: 'bc', size: 60 } } },
+    { id: 'sheet13', name: 'Sheet 1 + 3', sub: 'Lesson sheet', format: 'square', collage: 'big3', cgap: 6, d: {} },
+    { id: 'sheet23', name: 'Sheet 2 + 3', sub: 'Lesson sheet', format: 'square', collage: 't23', cgap: 6, d: { bg: 'rose', layout: 'phoneticTop', kf: 'kantumruy', kw: 700, cf: 'notoserif', pf: 'serif', pw: 500, sizes: { khmer: 58, pinyin: 34, chinese: 112, phonetic: 40 }, wm: { mode: 'text', text: 'Chinese Academy Cambodia', op: 10, size: 50 } } },
+    { id: 'quad', name: 'Quad Grid', sub: '2 × 2 sheet', format: 'square', collage: 'g4', cgap: 8, d: { bg: 'grid', kf: 'kantumruy', kw: 700, cf: 'notoserif', sizes: { khmer: 56, pinyin: 38, chinese: 118, phonetic: 42 }, wm: NOWM, badge: { pos: 'br', size: 56 } } },
+    { id: 'duo', name: 'Duo Cards', sub: '2 across, wide', format: 'wide', collage: 'v2', cgap: 8, d: { bg: 'redframe', kf: 'moul', cf: 'notoserif', pf: 'serif', sizes: { khmer: 58, pinyin: 38, chinese: 120, phonetic: 42 }, wm: NOWM } }
+  ];
+
+  /* ---------- State and storage ---------- */
+  const K_STATE = 'cac-poster-studio-v1', K_IMGS = 'cac-poster-images-v1', K_TPL = 'cac-poster-templates-v1';
+  const DEFAULT = {
+    format: 'poster', collage: 'single', cgap: 8, gutter: '#FFFFFF', active: 0,
+    cards: PRESETS.map((p) => ({ khmer: p.khmer, pinyin: p.pinyin, chinese: p.chinese, phonetic: p.phonetic })),
+    d: mkD({})
+  };
+  const lsGet = (k, fb) => { try { const v = JSON.parse(localStorage.getItem(k) || 'null'); return v == null ? fb : v; } catch (e) { return fb; } };
+  const lsSet = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); return true; } catch (e) { return false; } };
+
+  let imgs = lsGet(K_IMGS, []);
+  if (!Array.isArray(imgs)) imgs = [];
+  let myTpl = lsGet(K_TPL, []);
+  if (!Array.isArray(myTpl)) myTpl = [];
+  const imgById = (id) => imgs.find((i) => i.id === id);
+
+  function sanitize(st) {
+    const out = clone(DEFAULT);
+    const s = st && typeof st === 'object' ? st : {};
+    if (FORMATS[s.format]) out.format = s.format;
+    if (COLLAGES[s.collage]) out.collage = s.collage;
+    if (typeof s.cgap === 'number') out.cgap = s.cgap;
+    if (typeof s.gutter === 'string') out.gutter = s.gutter;
+    if (typeof s.active === 'number') out.active = s.active;
+    if (Array.isArray(s.cards)) s.cards.slice(0, 6).forEach((c, i) => FIELDS.forEach((f) => { if (c && typeof c[f] === 'string') out.cards[i][f] = c[f]; }));
+    if (s.d && typeof s.d === 'object') {
+      const d = out.d;
+      Object.keys(d).forEach((k) => {
+        const v = s.d[k];
+        if (v === undefined) return;
+        if (d[k] && typeof d[k] === 'object') { Object.keys(d[k]).forEach((j) => { if (typeof v[j] === typeof d[k][j]) d[k][j] = v[j]; }); }
+        else if (typeof v === typeof d[k]) d[k] = v;
+      });
+      if (!LAYOUTS[d.layout]) d.layout = 'classic';
+      if (!BGS.some((b) => b[0] === d.bg)) d.bg = 'wall';
+      if (!KF[d.kf]) d.kf = 'koulen';
+      if (!CF[d.cf]) d.cf = 'mashan';
+      if (!PF[d.pf]) d.pf = 'sans';
+      if (d.bg === 'image' && !imgById(d.img)) d.bg = 'paper';
+      if (d.logo !== 'cac' && !imgById(d.logo)) d.logo = 'cac';
+    }
+    out.active = Math.max(0, Math.min(5, out.active | 0));
+    return out;
+  }
+  let state = sanitize(lsGet(K_STATE, null));
+  let saveT;
+  function save() {
+    clearTimeout(saveT);
+    saveT = setTimeout(() => {
+      const ok = lsSet(K_STATE, state);
+      const t = new Date();
+      const hh = String(t.getHours()).padStart(2, '0') + ':' + String(t.getMinutes()).padStart(2, '0');
+      $('#saveText').textContent = ok ? `Saved ${hh}` : 'Not saved (storage blocked)';
+      $('#saveState').style.color = ok ? '' : 'var(--warn)';
+    }, 300);
+  }
+
+  /* ---------- Backdrops (inline SVG, drawn for the real card size) ---------- */
+  function rng(seed) { let s = seed >>> 0; return () => (s = (s * 1664525 + 1013904223) % 4294967296) / 4294967296; }
+  const bgCache = {};
+  function stops(c) { return c.map((x, i) => `<stop offset="${(i / (c.length - 1)).toFixed(2)}" stop-color="${x}"/>`).join(''); }
+  function scene(w, h, s, P) {
+    const f = (c, o) => `fill="${c}" opacity="${o}"`;
+    return `<g transform="translate(0 ${(h - 870 * s).toFixed(1)}) scale(${s.toFixed(4)})">
+<path d="M0 720 C40 690 75 640 115 662 C155 684 180 610 225 585 C262 566 282 618 312 646 C346 676 372 636 410 622 C450 610 478 652 512 670 C542 684 562 672 580 662 L580 900 L0 900 Z" ${f(P[0][0], P[0][1])} filter="url(#b5)"/>
+<ellipse cx="290" cy="705" rx="360" ry="26" fill="#fff" opacity=".7" filter="url(#b14)"/>
+<path d="M0 780 C50 750 90 705 140 725 C190 745 210 690 262 676 C312 664 336 716 380 726 C428 737 452 694 500 690 C535 688 560 712 580 722 L580 900 L0 900 Z" ${f(P[1][0], P[1][1])} filter="url(#b3)"/>
+<ellipse cx="290" cy="782" rx="340" ry="20" fill="#fff" opacity=".55" filter="url(#b14)"/>
+<path d="M0 830 C60 800 110 780 170 800 C230 820 270 790 330 786 C400 782 440 815 500 805 C535 799 560 790 580 786 L580 900 L0 900 Z" ${f(P[2][0], P[2][1])} filter="url(#b1)"/>
+</g>`;
+  }
+  function branch(w, s, color) {
+    const r = rng(11);
+    let o = `<path d="M592 30 C548 42 500 68 456 100 S 400 132 376 154" stroke="${color}" stroke-width="3.4" fill="none" stroke-linecap="round" opacity=".55"/>`;
+    [[566, 44], [532, 58], [498, 76], [462, 96], [430, 116], [398, 138], [380, 152]].forEach(([x, y]) => {
+      for (let k = 0; k < 15; k++) {
+        const a = (55 + k * 10.5 + r() * 6) * Math.PI / 180, len = 20 + r() * 18;
+        o += `<line x1="${x}" y1="${y}" x2="${(x + Math.cos(a) * len).toFixed(1)}" y2="${(y + Math.sin(a) * len).toFixed(1)}" stroke="${color}" stroke-width="1.3" stroke-linecap="round" opacity="${(.38 + r() * .22).toFixed(2)}"/>`;
+      }
+    });
+    return `<g transform="translate(${(w - 580 * s).toFixed(1)} 0) scale(${s.toFixed(4)})">${o}</g>`;
+  }
+  function svgBg(kind, w, h) {
+    const key = kind + '|' + w + 'x' + h;
+    if (bgCache[key]) return bgCache[key];
+    const s = w / 580, m = Math.min(w, h), r = rng(kind.length * 977 + Math.round(w));
+    const blur = `<filter id="b5" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="5"/></filter><filter id="b3" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="3"/></filter><filter id="b1" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="1.2"/></filter><filter id="b14" x="-30%" y="-100%" width="160%" height="300%"><feGaussianBlur stdDeviation="14"/></filter><filter id="b20" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="${(18 * s).toFixed(1)}"/></filter>`;
+    let defs = blur, body = '';
+    const frame = (c, o1, o2, ins1, ins2, sw) => `<rect x="${ins1}" y="${ins1}" width="${w - ins1 * 2}" height="${h - ins1 * 2}" rx="${6 * s}" fill="none" stroke="${c}" stroke-opacity="${o1}" stroke-width="${sw}"/><rect x="${ins2}" y="${ins2}" width="${w - ins2 * 2}" height="${h - ins2 * 2}" rx="${3 * s}" fill="none" stroke="${c}" stroke-opacity="${o2}" stroke-width="${(sw / 1.8).toFixed(2)}"/>`;
+    if (kind === 'wall') {
+      defs += `<linearGradient id="paper" x1="0" y1="0" x2="0" y2="1">${stops(['#F5F3EE', '#EDEAE3', '#E4E0D7'])}</linearGradient>
+<radialGradient id="vig" cx=".5" cy=".45" r=".78"><stop offset=".55" stop-color="#CFC8B8" stop-opacity="0"/><stop offset="1" stop-color="#CFC8B8" stop-opacity=".6"/></radialGradient>
+<pattern id="brick" width="${24 * s}" height="${12 * s}" patternUnits="userSpaceOnUse"><path d="M0 0H${24 * s}M0 ${6 * s}H${24 * s}M${12 * s} 0V${6 * s}M0 ${6 * s}V${12 * s}" stroke="#A59F93" stroke-opacity=".5" stroke-width="1" fill="none"/></pattern>
+<pattern id="tile" width="${20 * s}" height="${16 * s}" patternUnits="userSpaceOnUse"><path d="M0 0C0 ${16 * s} ${20 * s} ${16 * s} ${20 * s} 0" stroke="#5F5A50" stroke-opacity=".55" stroke-width="${1.3 * s}" fill="none"/></pattern>`;
+      const wallH = Math.max(120 * s, h * .15), roofH = 36 * s, roofY = h - wallH - roofH * .6;
+      body += `<rect width="${w}" height="${h}" fill="url(#paper)"/>`;
+      for (let i = 0; i < 7; i++) body += `<ellipse cx="${(r() * w).toFixed(0)}" cy="${(r() * h * .8).toFixed(0)}" rx="${((70 + r() * 110) * s).toFixed(0)}" ry="${((50 + r() * 90) * s).toFixed(0)}" fill="#CFC9BB" opacity="${(.16 + r() * .16).toFixed(2)}" filter="url(#b20)"/>`;
+      body += `<rect width="${w}" height="${h}" fill="url(#vig)"/>`;
+      body += `<ellipse cx="${w / 2}" cy="${(roofY - 10 * s).toFixed(0)}" rx="${w * .7}" ry="${46 * s}" fill="#fff" opacity=".7" filter="url(#b14)"/>`;
+      body += `<rect x="0" y="${(roofY + roofH * .9).toFixed(1)}" width="${w}" height="${h}" fill="#D8D4CB"/><rect x="0" y="${(roofY + roofH * .9).toFixed(1)}" width="${w}" height="${h}" fill="url(#brick)"/>`;
+      body += `<rect x="0" y="${roofY.toFixed(1)}" width="${w}" height="${roofH.toFixed(1)}" fill="#A8A39A" opacity=".9"/><rect x="0" y="${roofY.toFixed(1)}" width="${w}" height="${roofH.toFixed(1)}" fill="url(#tile)"/><rect x="0" y="${(roofY - 4 * s).toFixed(1)}" width="${w}" height="${(7 * s).toFixed(1)}" fill="#7C776D"/>`;
+    } else if (kind === 'mist' || kind === 'paper' || kind === 'charcoal') {
+      const sky = { mist: ['#FFFFFF', '#F3F4F6', '#E5E7EB'], paper: ['#FFFFFF', '#FFFFFF', '#F3F4F6'], charcoal: ['#1F2937', '#1B2432', '#111827'] }[kind];
+      const P = { mist: [['#9CA3AF', .45], ['#4B5563', .3], ['#1F2937', .55]], paper: [['#9CA3AF', .2], ['#6B7280', .1], ['#374151', .16]], charcoal: [['#6B7280', .25], ['#4B5563', .45], ['#0B1220', .6]] }[kind];
+      defs += `<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">${stops(sky)}</linearGradient>`;
+      body += `<rect width="${w}" height="${h}" fill="url(#sky)"/>` + scene(w, h, s, P);
+      if (kind === 'mist') body += branch(w, s, '#1F2937');
+      const fc = kind === 'charcoal' ? '#FFFFFF' : '#1F2937';
+      body += frame(fc, kind === 'charcoal' ? .22 : .32, .12, 14 * s, 22 * s, 1.5 * s);
+    } else if (kind === 'rose') {
+      const b = Math.max(10, m * .034);
+      body += `<rect width="${w}" height="${h}" fill="#D4A592"/><rect x="${b}" y="${b}" width="${w - b * 2}" height="${h - b * 2}" fill="#FFFDF9"/><rect x="${b + 1}" y="${b + 1}" width="${w - b * 2 - 2}" height="${h - b * 2 - 2}" fill="none" stroke="#C98F78" stroke-opacity=".5"/>`;
+      const n = Math.round(w * h / 7000);
+      for (let i = 0; i < n; i++) body += `<circle cx="${(b + r() * (w - b * 2)).toFixed(1)}" cy="${(b + r() * (h - b * 2)).toFixed(1)}" r="${((.5 + r() * .9) * s).toFixed(2)}" fill="#E3C9B0" opacity="${(.3 + r() * .4).toFixed(2)}"/>`;
+    } else if (kind === 'redframe') {
+      defs += `<linearGradient id="rf" x1="0" y1="0" x2="0" y2="1">${stops(['#FFFFFF', '#FFFFFF', '#FEF2F2'])}</linearGradient>`;
+      const c = 10 * s, a = 14 * s;
+      body += `<rect width="${w}" height="${h}" fill="url(#rf)"/><rect x="${a}" y="${a}" width="${w - a * 2}" height="${h - a * 2}" fill="none" stroke="#DC2626" stroke-width="${3 * s}"/><rect x="${24 * s}" y="${24 * s}" width="${w - 48 * s}" height="${h - 48 * s}" fill="none" stroke="#DC2626" stroke-width="${s}"/>`;
+      [[a, a], [w - a, a], [a, h - a], [w - a, h - a]].forEach(([x, y]) => { body += `<rect x="${x - c / 2}" y="${y - c / 2}" width="${c}" height="${c}" fill="#DC2626"/>`; });
+    } else if (kind === 'grid') {
+      let g = '';
+      for (let x = 28 * s; x < w; x += 28 * s) g += `M${x.toFixed(1)} 0V${h}`;
+      for (let y = 28 * s; y < h; y += 28 * s) g += `M0 ${y.toFixed(1)}H${w}`;
+      body += `<rect width="${w}" height="${h}" fill="#F9FAFB"/><path d="${g}" stroke="#E5E7EB" stroke-width="1" fill="none"/><rect width="${w}" height="${8 * s}" fill="#DC2626"/><rect y="${h - 4 * s}" width="${w}" height="${4 * s}" fill="#1F2937"/>`;
+    } else if (kind === 'crimson') {
+      defs += `<linearGradient id="cr" x1="0" y1="0" x2="1" y2="1">${stops(['#DC2626', '#B91C1C'])}</linearGradient>`;
+      body += `<rect width="${w}" height="${h}" fill="url(#cr)"/><circle cx="${w * .88}" cy="${h * .1}" r="${m * .45}" fill="none" stroke="#fff" stroke-opacity=".1" stroke-width="${2 * s}"/><circle cx="${w * .1}" cy="${h * .95}" r="${m * .5}" fill="none" stroke="#fff" stroke-opacity=".1" stroke-width="${2 * s}"/>` + frame('#FFFFFF', .38, .16, 14 * s, 22 * s, 1.5 * s);
+    }
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" width="${w}" height="${h}"><defs>${defs}</defs>${body}</svg>`;
+    return (bgCache[key] = 'url("data:image/svg+xml,' + encodeURIComponent(svg) + '")');
+  }
+
+  const CAC_LOGO = 'url("data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"><circle cx="60" cy="60" r="58" fill="#DC2626"/><circle cx="60" cy="60" r="49" fill="none" stroke="#fff" stroke-width="2.5"/><text x="60" y="68" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="32" font-weight="800" fill="#fff">CAC</text><text x="60" y="86" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="700" letter-spacing="2" fill="#fff">ACADEMY</text></svg>') + '")';
+  const logoUrl = (d) => { const i = d.logo !== 'cac' && imgById(d.logo); return i ? `url("${i.url}")` : CAC_LOGO; };
+  function isDark(d) {
+    if (DARK_BG[d.bg]) return true;
+    const lum = (hex) => { const n = parseInt(hex.slice(1), 16); return (.299 * (n >> 16) + .587 * ((n >> 8) & 255) + .114 * (n & 255)) / 255; };
+    if (d.bg === 'solid') return lum(d.bgColor) < .5;
+    if (d.bg === 'image') return lum(d.veil.color) < .5 && d.veil.op > 35;
+    return false;
+  }
+
+  /* ---------- Cards and poster ---------- */
+  function createCard(editable, i) {
+    const el = document.createElement('div');
+    el.className = 'card'; el.dataset.i = i;
+    const mk = (c) => { const d = document.createElement('div'); d.className = c; el.appendChild(d); return d; };
+    const P = { veil: mk('veil'), wm: mk('wm'), deco: mk('deco'), stack: mk('stack'), badge: mk('badge'), t: {} };
+    FIELDS.forEach((f) => {
+      const t = document.createElement('div');
+      t.className = 't'; t.dataset.f = f; t.lang = f === 'chinese' ? 'zh' : (f === 'pinyin' ? 'en' : 'km');
+      if (editable) { t.contentEditable = 'true'; t.spellcheck = false; t.setAttribute('aria-label', f); }
+      P.stack.appendChild(t); P.t[f] = t;
+    });
+    el._p = P;
+    return el;
+  }
+
+  function fitText(el, base, maxW, fit) {
+    el.style.fontSize = base + 'px';
+    if (!fit) return base;
+    const w = el.offsetWidth;
+    if (w <= maxW || w === 0) return base;
+    let s = Math.max(8, Math.floor(base * maxW / w));
+    el.style.fontSize = s + 'px';
+    let g = 0;
+    while (el.offsetWidth > maxW && s > 8 && g++ < 30) { s -= 1; el.style.fontSize = s + 'px'; }
+    return s;
+  }
+
+  function styleCard(card, D, c, x, y, w, h, ctx) {
+    const P = card._p, L = LAYOUTS[D.layout] || LAYOUTS.classic;
+    const k = Math.min(w / 580, h / 600);
+    const dark = isDark(D);
+    card.style.left = x + 'px'; card.style.top = y + 'px'; card.style.width = w + 'px'; card.style.height = h + 'px';
+    card.classList.toggle('multi', !!ctx.multi);
+    card.classList.toggle('active', !!ctx.active);
+
+    const bgKey = [D.bg, w, h, D.bgColor, D.img].join('|');
+    if (card._bg !== bgKey) {
+      card._bg = bgKey;
+      if (D.bg === 'image') {
+        const im = imgById(D.img);
+        card.style.backgroundImage = im ? `url("${im.url}")` : 'none';
+        card.style.backgroundColor = '#E5E7EB'; card.style.backgroundSize = 'cover'; card.style.backgroundPosition = 'center';
+      } else if (D.bg === 'solid') {
+        card.style.backgroundImage = 'none'; card.style.backgroundColor = D.bgColor;
+      } else {
+        card.style.backgroundImage = svgBg(D.bg, w, h); card.style.backgroundColor = '#fff';
+        card.style.backgroundSize = '100% 100%'; card.style.backgroundPosition = 'center';
+      }
+    }
+    P.veil.style.display = D.bg === 'image' ? 'block' : 'none';
+    P.veil.style.background = D.veil.color; P.veil.style.opacity = D.veil.op / 100;
+
+    const padX = w * .07, padY = h * .06;
+    const st = P.stack;
+    st.style.cssText = '';
+    st.style.padding = `${padY}px ${padX}px`;
+    st.style.gap = (D.gap * k) + 'px';
+    st.style.transform = (L.band || L.split) ? 'none' : `translateY(${D.y * k}px)`;
+    st.style.alignItems = L.left ? 'flex-start' : 'center';
+    st.style.justifyContent = L.band ? 'flex-start' : 'center';
+    if (L.left) st.style.paddingLeft = (padX * 2.2) + 'px';
+    if (L.band) st.style.padding = `${h * .04}px ${padX}px ${padY}px`;
+    if (L.split) {
+      st.style.display = 'grid'; st.style.gridTemplateColumns = '1fr 1fr'; st.style.gridTemplateRows = '1fr auto auto auto 1fr';
+      st.style.justifyItems = 'start'; st.style.alignItems = 'center'; st.style.columnGap = (padX * .5) + 'px'; st.style.rowGap = (D.gap * k) + 'px';
+    }
+
+    FIELDS.forEach((f) => {
+      const t = P.t[f], s = t.style, v = c[f] || '';
+      if (t.textContent !== v) t.textContent = v;
+      const base = D.sizes[f] * ((L.mul && L.mul[f]) || 1) * k;
+      s.color = D.colors[f];
+      s.textShadow = SHADOWS[D.shadow] || '';
+      s.order = L.order ? String(L.order.indexOf(f)) : '0';
+      s.textAlign = L.left ? 'left' : 'center';
+      s.margin = '0'; s.gridColumn = ''; s.gridRow = ''; s.justifySelf = '';
+      if (f === 'khmer' || f === 'phonetic') {
+        const kf = KF[D.kf];
+        s.fontFamily = kf.css; s.fontWeight = kf.bold && D.kw >= 700 ? '700' : '400'; s.lineHeight = '1.6';
+      } else if (f === 'pinyin') {
+        s.fontFamily = PF[D.pf].css; s.fontWeight = String(D.pw); s.lineHeight = '1.35';
+      } else {
+        const cf = CF[D.cf];
+        s.fontFamily = cf.css; s.fontWeight = String(cf.w); s.lineHeight = '1.12';
+      }
+      if (L.band && f === 'khmer') s.color = '#FFFFFF';
+      if (L.split) {
+        s.justifySelf = f === 'chinese' ? 'center' : 'start';
+        s.gridColumn = f === 'chinese' ? '1' : '2';
+        s.gridRow = f === 'chinese' ? '1 / 6' : ({ khmer: '2', pinyin: '3', phonetic: '4' })[f];
+        s.textAlign = f === 'chinese' ? 'center' : 'left';
+      }
+      let maxW = w * .86;
+      if (L.split) maxW = f === 'chinese' ? w * .42 : w * .4;
+      else if (L.left) maxW = w - padX * 3.4;
+      fitText(t, base, maxW, D.fit);
+    });
+    if (L.band) { P.t.pinyin.style.marginTop = 'auto'; P.t.phonetic.style.marginBottom = 'auto'; }
+
+    const dc = P.deco;
+    dc.style.cssText = ''; dc.style.display = 'none';
+    if (L.band) {
+      const kt = P.t.khmer;
+      Object.assign(dc.style, { display: 'block', left: '0', top: '0', width: '100%', height: (kt.offsetTop + kt.offsetHeight + h * .025) + 'px', background: D.colors.khmer });
+    } else if (L.bar) {
+      Object.assign(dc.style, { display: 'block', left: (padX * .9) + 'px', top: (h * .2) + 'px', bottom: (h * .2) + 'px', width: (7 * k) + 'px', background: D.colors.khmer, borderRadius: '2px' });
+    }
+
+    const W = D.wm, wm = P.wm;
+    wm.style.cssText = ''; wm.textContent = '';
+    if (W.mode === 'logo') {
+      const sz = Math.min(w, h) * W.size / 100;
+      Object.assign(wm.style, { left: '50%', top: '50%', width: sz + 'px', height: sz + 'px', marginLeft: (-sz / 2) + 'px', marginTop: (-sz / 2 + D.y * k) + 'px', backgroundImage: logoUrl(D), backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center', opacity: W.op / 100 });
+    } else if (W.mode === 'text') {
+      wm.textContent = W.text;
+      Object.assign(wm.style, { left: '50%', top: '50%', transform: 'translate(-50%, -50%) rotate(-32deg)', whiteSpace: 'nowrap', fontWeight: '700', fontFamily: PF.sans.css, fontSize: (36 * k * W.size / 50) + 'px', color: dark ? '#FFFFFF' : '#1F2937', opacity: W.op / 100 });
+    }
+
+    const B = D.badge, bd = P.badge;
+    bd.style.cssText = ''; bd.style.display = B.pos === 'none' ? 'none' : 'block';
+    if (B.pos !== 'none') {
+      const sz = B.size * k, mg = Math.min(w, h) * .045;
+      Object.assign(bd.style, { width: sz + 'px', height: sz + 'px', backgroundImage: logoUrl(D), backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' });
+      if (B.pos[0] === 't') bd.style.top = mg + 'px'; else bd.style.bottom = mg + 'px';
+      if (B.pos === 'bc') { bd.style.left = '50%'; bd.style.marginLeft = (-sz / 2) + 'px'; }
+      else if (B.pos[1] === 'l') bd.style.left = mg + 'px'; else bd.style.right = mg + 'px';
+    }
+  }
+
+  function makePoster() { const r = document.createElement('div'); r.className = 'poster'; r._cards = []; return r; }
+  function paintPoster(root, st, editable) {
+    const F = FORMATS[st.format], C = COLLAGES[st.collage], n = C.slots.length;
+    root.style.width = F.w + 'px'; root.style.height = F.h + 'px';
+    while (root._cards.length < n) { const c = createCard(editable, root._cards.length); root.appendChild(c); root._cards.push(c); }
+    while (root._cards.length > n) root._cards.pop().remove();
+    const g = n > 1 ? st.cgap : 0;
+    root.style.background = n > 1 ? st.gutter : 'transparent';
+    C.slots.forEach(([fx, fy, fw, fh], i) => {
+      const x = Math.round(fx * F.w + g / 2), y = Math.round(fy * F.h + g / 2);
+      const w = Math.round((fx + fw) * F.w - g / 2) - x, h = Math.round((fy + fh) * F.h - g / 2) - y;
+      styleCard(root._cards[i], st.d, st.cards[i], x, y, w, h, { multi: n > 1, active: editable && n > 1 && i === st.active });
+    });
+  }
+
+  const poster = $('#poster');
+  poster._cards = [];
+  const frame = $('#frame'), scroller = $('#scroll');
+  let zoom = 1, scale = 1;
+
+  function layoutStage() {
+    const F = FORMATS[state.format];
+    const small = window.matchMedia('(max-width: 860px)').matches;
+    const aw = scroller.clientWidth - 32, ah = scroller.clientHeight - (small ? 80 : 152);
+    const fit = Math.max(.12, Math.min(aw / F.w, ah / F.h, 1.15));
+    scale = fit * zoom;
+    frame.style.width = (F.w * scale) + 'px'; frame.style.height = (F.h * scale) + 'px';
+    poster.style.transform = `scale(${scale})`;
+    $('#zRead').textContent = Math.round(scale * 100) + '%';
+    const o = F.out / F.w;
+    $('#zInfo').textContent = `${F.w} × ${F.h} · exports ${Math.round(F.w * o)} × ${Math.round(F.h * o)} px`;
+  }
+
+  /* ---------- Controls ---------- */
+  const syncFns = [];
+  const D = () => state.d;
+  const card = () => state.cards[state.active];
+  const nCards = () => COLLAGES[state.collage].slots.length;
+
+  function addOpt(host, html, isOn, pick, cls) {
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'opt' + (cls ? ' ' + cls : ''); b.setAttribute('role', 'radio'); b.innerHTML = html;
+    b.addEventListener('click', pick); host.appendChild(b);
+    syncFns.push(() => b.setAttribute('aria-checked', String(isOn())));
+    return b;
+  }
+  function addSeg(host, items, get, set) {
+    const bs = items.map(([v, label]) => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.setAttribute('role', 'radio'); b.textContent = label;
+      b.addEventListener('click', () => { set(v); commit(); }); host.appendChild(b);
+      return [v, b];
+    });
+    syncFns.push(() => bs.forEach(([v, b]) => b.setAttribute('aria-checked', String(get() === v))));
+    return bs;
+  }
+  function colorRow(host, label, get, set, id) {
+    const row = document.createElement('div'); row.className = 'crow';
+    const sp = document.createElement('span'); sp.textContent = label;
+    const chips = document.createElement('div'); chips.className = 'chips';
+    const btns = PALETTE.map(([hex, nm]) => {
+      const c = document.createElement('button');
+      c.type = 'button'; c.className = 'chip'; c.style.setProperty('--c', hex); c.title = nm; c.setAttribute('aria-label', `${label}: ${nm}`);
+      c.addEventListener('click', () => { set(hex); commit(); }); chips.appendChild(c);
+      return [hex, c];
+    });
+    const cu = document.createElement('label'); cu.className = 'chip custom'; cu.title = 'Custom colour';
+    const ci = document.createElement('input'); ci.type = 'color'; ci.id = id; ci.setAttribute('aria-label', `${label}: custom colour`);
+    ci.addEventListener('input', () => { set(ci.value.toUpperCase()); commit(); });
+    cu.appendChild(ci); chips.appendChild(cu); row.append(sp, chips); host.appendChild(row);
+    syncFns.push(() => {
+      const cur = String(get()).toUpperCase();
+      btns.forEach(([hex, c]) => c.setAttribute('aria-pressed', String(hex === cur)));
+      cu.classList.toggle('on', !PAL_HEX.includes(cur)); cu.style.setProperty('--c', cur);
+      if (ci.value.toUpperCase() !== cur) ci.value = cur.toLowerCase();
+    });
+  }
+  function addSlider(host, id, label, min, max, get, set, fmt) {
+    const w = document.createElement('div');
+    w.innerHTML = `<div class="slider-top"><label for="sl-${id}"></label><output for="sl-${id}"></output></div><input type="range" id="sl-${id}" min="${min}" max="${max}" step="1">`;
+    $('label', w).textContent = label;
+    const rg = $('input', w), out = $('output', w);
+    rg.addEventListener('input', () => { set(+rg.value); commit(); });
+    host.appendChild(w);
+    syncFns.push(() => {
+      const v = get();
+      if (+rg.value !== v) rg.value = v;
+      rg.style.setProperty('--p', ((v - min) / (max - min) * 100) + '%');
+      out.textContent = fmt ? fmt(v) : String(v);
+    });
+  }
+
+  /* Content */
+  const inputs = { khmer: $('#in-khmer'), pinyin: $('#in-pinyin'), chinese: $('#in-chinese'), phonetic: $('#in-phonetic') };
+  Object.entries(inputs).forEach(([f, el]) => el.addEventListener('input', () => { card()[f] = el.value; commit(); }));
+  syncFns.push(() => Object.entries(inputs).forEach(([f, el]) => { if (el.value !== card()[f]) el.value = card()[f]; }));
+
+  const presetBtns = PRESETS.map((p) => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'preset'; b.setAttribute('aria-pressed', 'false');
+    b.innerHTML = '<span class="p-zh" lang="zh"></span><span class="p-meta"><span class="p-km" lang="km"></span><span class="p-en"></span></span>';
+    $('.p-zh', b).textContent = p.chinese; $('.p-km', b).textContent = p.khmer; $('.p-en', b).textContent = p.name;
+    b.addEventListener('click', () => { FIELDS.forEach((f) => { card()[f] = p[f]; }); commit(); });
+    $('#presets').appendChild(b);
+    return b;
+  });
+  syncFns.push(() => presetBtns.forEach((b, i) => b.setAttribute('aria-pressed', String(PRESETS[i].khmer === card().khmer && PRESETS[i].chinese === card().chinese))));
+
+  const chipBtns = [0, 1, 2, 3, 4, 5].map((i) => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'cn'; b.textContent = 'Card ' + (i + 1); b.setAttribute('aria-pressed', 'false');
+    b.addEventListener('click', () => { state.active = i; commit(); });
+    $('#cardChips').appendChild(b);
+    return b;
+  });
+  $('#fillAll').addEventListener('click', () => {
+    for (let i = 0; i < nCards(); i++) FIELDS.forEach((f) => { state.cards[i][f] = PRESETS[i % PRESETS.length][f]; });
+    commit(); toast('Filled the cards with presets');
+  });
+  syncFns.push(() => {
+    $('#cardsGroup').hidden = nCards() < 2;
+    chipBtns.forEach((b, i) => { b.hidden = i >= nCards(); b.setAttribute('aria-pressed', String(i === state.active)); });
+  });
+
+  /* Design: backdrop */
+  const bgThumbs = {};
+  const IMG_ICON = '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M4 18l5-5 4 4 3-3 4 4"/></svg>';
+  BGS.forEach(([k, name]) => {
+    addOpt($('#bgOpts'), `<span class="thumb"></span><span class="nm">${name}</span>`, () => D().bg === k, () => {
+      const d = D();
+      d.bg = k; d.colors = clone(INK[k]); d.shadow = DARK_BG[k] ? 'none' : (k === 'wall' ? 'drop' : 'glow');
+      if (k === 'image') {
+        if (!imgById(d.img)) { const first = imgs.find((i) => i.kind === 'bg'); d.img = first ? first.id : ''; }
+        if (!d.img) toast('Upload a photo in the box below');
+      }
+      commit();
+    });
+    const th = $('.thumb', $('#bgOpts').lastChild);
+    bgThumbs[k] = th;
+    if (k === 'solid' || k === 'image') return;
+    th.style.backgroundImage = svgBg(k, 150, 200);
+  });
+  syncFns.push(() => {
+    bgThumbs.solid.style.backgroundColor = D().bgColor;
+    const im = imgById(D().img);
+    bgThumbs.image.style.backgroundImage = im ? `url("${im.url}")` : 'none';
+    bgThumbs.image.classList.toggle('cover', !!im);
+    bgThumbs.image.innerHTML = im ? '' : IMG_ICON;
+  });
+  colorRow($('#solidColor'), 'Backdrop', () => D().bgColor, (v) => { D().bgColor = v; D().colors = clone(INK.solid); if (isDark(D())) { D().colors = clone(INK.crimson); D().shadow = 'none'; } }, 'col-solid');
+  colorRow($('#veilColor'), 'Veil colour', () => D().veil.color, (v) => { D().veil.color = v; }, 'col-veil');
+  addSlider($('#veilSl'), 'veil', 'Veil strength', 0, 90, () => D().veil.op, (v) => { D().veil.op = v; }, (v) => v + '%');
+  syncFns.push(() => {
+    $('#gSolid').hidden = D().bg !== 'solid';
+    $('#gImage').hidden = D().bg !== 'image';
+  });
+
+  /* Design: fonts */
+  function fontTile(host, items, key, sample, lang, weightFn) {
+    return Object.entries(items).map(([k, f]) => {
+      const b = addOpt(host, `<span class="fprev" lang="${lang}"></span><span class="nm">${f.name}</span><span class="sub">${f.sub || ''}</span>`, () => D()[key] === k, () => { D()[key] = k; commit(); });
+      const pv = $('.fprev', b);
+      pv.textContent = sample; pv.style.fontFamily = f.css;
+      syncFns.push(() => { pv.style.fontWeight = weightFn(f); });
+      return b;
+    });
+  }
+  fontTile($('#khFonts'), KF, 'kf', 'រៀនសូត្រ', 'km', (f) => (f.bold && D().kw >= 700 ? '700' : '400'));
+  fontTile($('#zhFonts'), CF, 'cf', '学习', 'zh', (f) => String(f.w));
+  fontTile($('#pyFonts'), PF, 'pf', 'xuéxí', 'en', () => String(D().pw));
+  const kwBtns = addSeg($('#kwSeg'), [[400, 'Regular'], [700, 'Bold']], () => D().kw, (v) => { D().kw = v; });
+  syncFns.push(() => kwBtns.forEach(([, b]) => { b.style.opacity = KF[D().kf].bold ? '' : '.45'; }));
+  addSeg($('#pwSeg'), [[400, 'Regular'], [500, 'Medium'], [700, 'Bold']], () => D().pw, (v) => { D().pw = v; });
+
+  /* Design: colours, shadow, logo, watermark, badge */
+  [['khmer', 'Khmer title'], ['pinyin', 'Pinyin'], ['chinese', 'Chinese'], ['phonetic', 'Khmer phonetic']].forEach(([f, label]) => colorRow($('#colors'), label, () => D().colors[f], (v) => { D().colors[f] = v; }, 'col-' + f));
+  addSeg($('#shSeg'), [['none', 'No shadow'], ['glow', 'Soft glow'], ['drop', 'Drop shadow']], () => D().shadow, (v) => { D().shadow = v; });
+  addSeg($('#wmSeg'), [['none', 'None'], ['logo', 'Logo'], ['text', 'Text']], () => D().wm.mode, (v) => { D().wm.mode = v; });
+  const wmText = $('#wmText');
+  wmText.addEventListener('input', () => { D().wm.text = wmText.value; commit(); });
+  addSlider($('#wmSl'), 'wmop', 'Watermark strength', 3, 40, () => D().wm.op, (v) => { D().wm.op = v; }, (v) => v + '%');
+  addSlider($('#wmSl'), 'wmsz', 'Watermark size', 20, 100, () => D().wm.size, (v) => { D().wm.size = v; }, (v) => v + '%');
+  syncFns.push(() => {
+    $('#wmTextRow').hidden = D().wm.mode !== 'text';
+    if (wmText.value !== D().wm.text) wmText.value = D().wm.text;
+    $('#wmSl').hidden = D().wm.mode === 'none';
+    $('#badgeSl').hidden = D().badge.pos === 'none';
+  });
+  [['none', 'Off'], ['tl', 'Top left'], ['tr', 'Top right'], ['bl', 'Bottom left'], ['bc', 'Bottom centre'], ['br', 'Bottom right']].forEach(([k, name]) => {
+    addOpt($('#badgeOpts'), `<span class="nm">${name}</span>`, () => D().badge.pos === k, () => { D().badge.pos = k; commit(); });
+  });
+  addSlider($('#badgeSl'), 'bdsz', 'Badge size', 24, 140, () => D().badge.size, (v) => { D().badge.size = v; }, (v) => v + 'px');
+
+  /* Layout */
+  Object.entries(FORMATS).forEach(([k, f]) => {
+    const rw = f.w >= f.h ? 34 : Math.round(34 * f.w / f.h), rh = f.w >= f.h ? Math.round(34 * f.h / f.w) : 34;
+    addOpt($('#fmtOpts'), `<i class="ratio" style="width:${rw}px;height:${rh}px"></i><span class="nm">${f.name}</span><span class="sub">${f.ratio}</span>`, () => state.format === k, () => { state.format = k; zoom = 1; commit(); });
+  });
+  syncFns.push(() => { const F = FORMATS[state.format]; $('#fmtInfo').textContent = `${F.w} × ${F.h}`; });
+
+  function collageIcon(id) {
+    const n = 40; let o = '';
+    COLLAGES[id].slots.forEach(([x, y, w, h]) => { o += `<rect x="${x * n + 1}" y="${y * n + 1}" width="${w * n - 2}" height="${h * n - 2}" rx="2" fill="currentColor" opacity=".6"/>`; });
+    return `<svg class="mini" viewBox="0 0 ${n} ${n}" width="34" height="34" aria-hidden="true">${o}</svg>`;
+  }
+  function layoutIcon(id) {
+    const L = LAYOUTS[id];
+    const spec = { khmer: ['#DC2626', 7, 26], pinyin: ['#9CA3AF', 3.5, 20], chinese: ['#374151', 13, 28], phonetic: ['#2B3294', 5, 20] };
+    let o = '';
+    if (L.split) {
+      o = '<rect x="5" y="19" width="17" height="22" rx="2" fill="#374151"/><rect x="27" y="18" width="12" height="5" rx="1" fill="#DC2626"/><rect x="27" y="27" width="10" height="3" rx="1" fill="#9CA3AF"/><rect x="27" y="34" width="10" height="4" rx="1" fill="#2B3294"/>';
+    } else {
+      const order = L.band ? ['pinyin', 'chinese', 'phonetic'] : L.order;
+      const total = order.reduce((a, f) => a + spec[f][1], 0) + 5 * (order.length - 1);
+      let y = L.band ? 24 + (36 - total) / 2 : (60 - total) / 2;
+      if (L.band) o += '<rect x="0" y="0" width="44" height="14" fill="#DC2626"/><rect x="9" y="4.5" width="26" height="5" rx="1" fill="#fff"/>';
+      if (L.bar) o += '<rect x="4" y="12" width="2.6" height="36" rx="1" fill="#DC2626"/>';
+      order.forEach((f) => {
+        const [c, h, w] = spec[f];
+        o += `<rect x="${L.left ? 11 : (44 - w) / 2}" y="${y.toFixed(1)}" width="${w}" height="${h}" rx="1.5" fill="${c}"/>`;
+        y += h + 5;
+      });
+    }
+    return `<svg class="mini" viewBox="0 0 44 60" width="30" height="42" aria-hidden="true" style="color:inherit">${o}</svg>`;
+  }
+  Object.entries(COLLAGES).forEach(([k, c]) => {
+    addOpt($('#colOpts'), `${collageIcon(k)}<span class="nm">${c.name}</span>`, () => state.collage === k, () => { state.collage = k; if (state.active >= COLLAGES[k].slots.length) state.active = 0; commit(); });
+  });
+  Object.entries(LAYOUTS).forEach(([k, l]) => {
+    addOpt($('#layOpts'), `${layoutIcon(k)}<span class="nm">${l.name}</span>`, () => D().layout === k, () => { D().layout = k; commit(); });
+  });
+  [['khmer', 'Khmer title', 30, 110], ['pinyin', 'Pinyin', 18, 80], ['chinese', 'Chinese characters', 50, 200], ['phonetic', 'Khmer phonetic', 20, 80]].forEach(([f, label, mn, mx]) => {
+    addSlider($('#sizeSl'), 'sz-' + f, label, mn, mx, () => D().sizes[f], (v) => { D().sizes[f] = v; }, (v) => v + 'px');
+  });
+  addSlider($('#posSl'), 'y', 'Move text up or down', -120, 120, () => D().y, (v) => { D().y = v; }, (v) => (v > 0 ? '+' : '') + v);
+  addSlider($('#posSl'), 'gap', 'Space between lines', 0, 60, () => D().gap, (v) => { D().gap = v; }, (v) => v + 'px');
+  addSlider($('#gutSl'), 'cgap', 'Gutter width', 0, 24, () => state.cgap, (v) => { state.cgap = v; }, (v) => v + 'px');
+  colorRow($('#gutColor'), 'Gutter colour', () => state.gutter, (v) => { state.gutter = v; }, 'col-gutter');
+  syncFns.push(() => { $('#gGutter').hidden = nCards() < 2; });
+  $('#resetLayout').addEventListener('click', () => { Object.assign(D(), { sizes: clone(BASE_D.sizes), y: 0, gap: 14, fit: true }); commit(); toast('Text layout reset'); });
+  const fitToggle = $('#fitToggle');
+  fitToggle.addEventListener('change', () => { D().fit = fitToggle.checked; commit(); });
+  syncFns.push(() => { fitToggle.checked = D().fit; });
+
+  /* ---------- Render loop ---------- */
+  function render() { paintPoster(poster, state, true); syncFns.forEach((f) => f()); layoutStage(); }
+  function commit() { render(); save(); scheduleThumbs(); }
+
+  poster.addEventListener('input', (e) => {
+    const t = e.target.closest && e.target.closest('.t');
+    if (!t) return;
+    const i = +t.closest('.card').dataset.i;
+    state.active = i;
+    state.cards[i][t.dataset.f] = t.textContent.replace(/\n/g, '');
+    commit();
+  });
+  poster.addEventListener('focusin', (e) => {
+    const c = e.target.closest && e.target.closest('.card');
+    if (!c) return;
+    const i = +c.dataset.i;
+    if (i !== state.active) { state.active = i; render(); save(); }
+  });
+  poster.addEventListener('keydown', (e) => { if (e.key === 'Enter' && e.target.closest('.t')) { e.preventDefault(); e.target.blur(); } });
+  poster.addEventListener('paste', (e) => {
+    if (!e.target.closest || !e.target.closest('.t')) return;
+    e.preventDefault();
+    document.execCommand('insertText', false, (e.clipboardData || window.clipboardData).getData('text').replace(/\s+/g, ' '));
+  });
+
+  $('#zIn').addEventListener('click', () => { zoom = Math.min(2.5, +(zoom + .15).toFixed(2)); layoutStage(); });
+  $('#zOut').addEventListener('click', () => { zoom = Math.max(.4, +(zoom - .15).toFixed(2)); layoutStage(); });
+  $('#zFit').addEventListener('click', () => { zoom = 1; layoutStage(); });
+  if (window.ResizeObserver) new ResizeObserver(layoutStage).observe(scroller);
+  window.addEventListener('resize', layoutStage);
+
+  let toastT;
+  function toast(msg) {
+    const el = $('#toast'); el.textContent = msg; el.hidden = false;
+    clearTimeout(toastT); toastT = setTimeout(() => { el.hidden = true; }, 3000);
+  }
+
+  /* ---------- Tabs ---------- */
+  const rail = $('#rail'), tabs = $$('.navb');
+  const NAMES = ['templates', 'content', 'design', 'layout'];
+  let current = 'templates';
+  const isMobile = () => window.matchMedia('(max-width: 860px)').matches;
+  function selectTab(name, fromUser) {
+    const was = current === name;
+    current = name;
+    tabs.forEach((t) => { const on = t.id === 'tab-' + name; t.setAttribute('aria-selected', String(on)); t.tabIndex = on ? 0 : -1; });
+    NAMES.forEach((n) => { $('#panel-' + n).hidden = n !== name; });
+    if (isMobile() && fromUser) rail.classList.toggle('open', !(was && rail.classList.contains('open')));
+    if (name === 'templates') buildThumbs();
+  }
+  tabs.forEach((t, i) => {
+    t.addEventListener('click', () => selectTab(t.id.replace('tab-', ''), true));
+    t.addEventListener('keydown', (e) => {
+      const next = { ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1 }[e.key];
+      if (!next) return;
+      e.preventDefault();
+      const n = tabs[(i + next + tabs.length) % tabs.length];
+      n.focus(); selectTab(n.id.replace('tab-', ''), false);
+    });
+  });
+
+  /* ---------- Templates ---------- */
+  const builtin = TPL.map((t) => ({ ...t, dd: mkD(t.d) }));
+  const stOf = (t) => ({ format: t.format, collage: t.collage, cgap: t.cgap == null ? 8 : t.cgap, gutter: t.gutter || '#FFFFFF', active: -1, cards: state.cards, d: t.dd || t.d });
+  function thumbInto(host, st) {
+    host.textContent = '';
+    const F = FORMATS[st.format], s = Math.min(150 / F.w, 156 / F.h);
+    const box = document.createElement('div');
+    box.className = 'tscale'; box.style.width = (F.w * s) + 'px'; box.style.height = (F.h * s) + 'px';
+    const root = makePoster(); root.style.transform = `scale(${s})`;
+    box.appendChild(root); host.appendChild(box);
+    paintPoster(root, st, false);
+  }
+  function applyTpl(t) {
+    const d = clone(t.dd || t.d);
+    if (d.bg === 'image' && !imgById(d.img)) { d.bg = 'paper'; d.colors = clone(INK.paper); }
+    if (d.logo !== 'cac' && !imgById(d.logo)) d.logo = 'cac';
+    state.format = t.format; state.collage = t.collage; state.cgap = t.cgap == null ? 8 : t.cgap; state.gutter = t.gutter || '#FFFFFF';
+    state.d = d;
+    if (state.active >= nCards()) state.active = 0;
+    zoom = 1; commit();
+    toast(`Applied ${t.name}`);
+  }
+  let thumbT, thumbsDirty = true;
+  function buildThumbs() {
+    if ($('#panel-templates').hidden) { thumbsDirty = true; return; }
+    thumbsDirty = false;
+    const grid = $('#tplGrid');
+    grid.textContent = '';
+    $('#tplCount').textContent = builtin.length + ' designs';
+    builtin.forEach((t) => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'tpl';
+      b.innerHTML = '<span class="tbox"></span><span class="nm"></span><span class="sub"></span>';
+      $('.nm', b).textContent = t.name; $('.sub', b).textContent = t.sub;
+      b.setAttribute('aria-pressed', String(t.format === state.format && t.collage === state.collage && t.dd.bg === state.d.bg && t.dd.layout === state.d.layout));
+      b.addEventListener('click', () => applyTpl(t));
+      grid.appendChild(b);
+      thumbInto($('.tbox', b), stOf(t));
+    });
+  }
+  function scheduleThumbs() {
+    if ($('#panel-templates').hidden) { thumbsDirty = true; return; }
+    clearTimeout(thumbT); thumbT = setTimeout(buildThumbs, 350);
+  }
+
+  function renderMine() {
+    const host = $('#mineList');
+    host.textContent = '';
+    if (!myTpl.length) {
+      const p = document.createElement('p'); p.className = 'note'; p.textContent = 'No saved designs yet. Set up a look you like, name it above and press Save design.';
+      host.appendChild(p); return;
+    }
+    myTpl.forEach((t) => {
+      const r = document.createElement('div'); r.className = 'mrow';
+      r.innerHTML = '<b></b><button type="button" class="btn sm use">Use</button><button type="button" class="btn sm danger del" aria-label="Delete">Delete</button>';
+      $('b', r).textContent = t.name;
+      $('.use', r).addEventListener('click', () => applyTpl({ ...t, dd: t.d }));
+      $('.del', r).addEventListener('click', () => { myTpl = myTpl.filter((x) => x.id !== t.id); lsSet(K_TPL, myTpl); renderMine(); });
+      host.appendChild(r);
+    });
+  }
+  $('#tplSave').addEventListener('click', () => {
+    const name = $('#tplName').value.trim() || `My design ${myTpl.length + 1}`;
+    myTpl.push({ id: uid(), name, format: state.format, collage: state.collage, cgap: state.cgap, gutter: state.gutter, sub: 'My design', d: clone(state.d) });
+    const ok = lsSet(K_TPL, myTpl);
+    $('#tplName').value = ''; renderMine();
+    toast(ok ? `Saved "${name}" in this browser` : 'Could not save. Browser storage is blocked.');
+  });
+
+  /* ---------- Image library ---------- */
+  let libBg = [], libLogo = [];
+  const PLUS = '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>';
+  function libItem(i, kind) {
+    const el = document.createElement('div'); el.className = 'li' + (kind === 'logo' ? ' contain' : '');
+    el.style.backgroundImage = `url("${i.url}")`;
+    const pick = document.createElement('button'); pick.type = 'button'; pick.className = 'pick'; pick.title = i.name; pick.setAttribute('aria-label', `Use ${i.name}`);
+    pick.addEventListener('click', () => {
+      if (kind === 'bg') { D().img = i.id; D().bg = 'image'; } else { D().logo = i.id; }
+      commit();
+    });
+    const x = document.createElement('button'); x.type = 'button'; x.className = 'x'; x.textContent = '×'; x.setAttribute('aria-label', `Delete ${i.name}`);
+    x.addEventListener('click', () => delImage(i.id));
+    el.append(pick, x);
+    return el;
+  }
+  function addBtn(inputId, label) {
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'li-add'; b.title = label; b.setAttribute('aria-label', label); b.innerHTML = PLUS;
+    b.addEventListener('click', () => $('#' + inputId).click());
+    return b;
+  }
+  function renderLib() {
+    const bg = $('#libBg'), lg = $('#libLogo');
+    bg.textContent = ''; lg.textContent = ''; libBg = []; libLogo = [];
+    imgs.filter((i) => i.kind === 'bg').forEach((i) => { const el = libItem(i, 'bg'); bg.appendChild(el); libBg.push([i.id, el]); });
+    bg.appendChild(addBtn('fileBg', 'Upload a photo'));
+    const cac = document.createElement('div'); cac.className = 'li contain';
+    cac.style.backgroundImage = CAC_LOGO;
+    const cp = document.createElement('button'); cp.type = 'button'; cp.className = 'pick'; cp.title = 'CAC badge'; cp.setAttribute('aria-label', 'Use the CAC badge');
+    cp.addEventListener('click', () => { D().logo = 'cac'; commit(); });
+    cac.appendChild(cp); lg.appendChild(cac); libLogo.push(['cac', cac]);
+    imgs.filter((i) => i.kind === 'logo').forEach((i) => { const el = libItem(i, 'logo'); lg.appendChild(el); libLogo.push([i.id, el]); });
+    lg.appendChild(addBtn('fileLogo', 'Upload your logo'));
+  }
+  syncFns.push(() => {
+    libBg.forEach(([id, el]) => el.classList.toggle('sel', D().img === id));
+    libLogo.forEach(([id, el]) => el.classList.toggle('sel', D().logo === id));
+  });
+  function delImage(id) {
+    imgs = imgs.filter((i) => i.id !== id);
+    lsSet(K_IMGS, imgs);
+    if (D().img === id) { D().img = ''; if (D().bg === 'image') { D().bg = 'paper'; D().colors = clone(INK.paper); } }
+    if (D().logo === id) D().logo = 'cac';
+    renderLib(); commit();
+  }
+  async function readImage(file, kind) {
+    const max = kind === 'bg' ? 1600 : 640;
+    const url = await new Promise((res, rej) => { const fr = new FileReader(); fr.onload = () => res(fr.result); fr.onerror = rej; fr.readAsDataURL(file); });
+    const img = await new Promise((res, rej) => { const im = new Image(); im.onload = () => res(im); im.onerror = rej; im.src = url; });
+    const sc = Math.min(1, max / Math.max(img.width, img.height));
+    const w = Math.max(1, Math.round(img.width * sc)), h = Math.max(1, Math.round(img.height * sc));
+    const c = document.createElement('canvas'); c.width = w; c.height = h;
+    const x = c.getContext('2d');
+    if (kind === 'bg') { x.fillStyle = '#fff'; x.fillRect(0, 0, w, h); }
+    x.drawImage(img, 0, 0, w, h);
+    return kind === 'bg' ? c.toDataURL('image/jpeg', .85) : c.toDataURL('image/png');
+  }
+  async function onFile(input, kind) {
+    const f = input.files && input.files[0];
+    input.value = '';
+    if (!f) return;
+    if (!/^image\//.test(f.type)) { toast('Choose an image file (JPG, PNG, WebP or SVG).'); return; }
+    if (imgs.filter((i) => i.kind === kind).length >= 8) { toast('You can keep 8 images of each kind. Delete one first.'); return; }
+    try {
+      const url = await readImage(f, kind);
+      const it = { id: uid(), kind, name: f.name, url };
+      imgs.push(it);
+      const ok = lsSet(K_IMGS, imgs);
+      renderLib();
+      if (kind === 'bg') { D().bg = 'image'; D().img = it.id; D().colors = clone(INK.image); D().shadow = 'glow'; }
+      else { D().logo = it.id; if (D().wm.mode === 'none' && D().badge.pos === 'none') D().wm.mode = 'logo'; }
+      commit();
+      toast(ok ? 'Image added and saved in this browser' : 'Image added, but it is too large to remember after you close this page.');
+    } catch (e) { toast('That image could not be read. Try a JPG or PNG.'); }
+  }
+  $('#fileBg').addEventListener('change', (e) => onFile(e.target, 'bg'));
+  $('#fileLogo').addEventListener('change', (e) => onFile(e.target, 'logo'));
+
+  /* ---------- Reset and copy ---------- */
+  $('#resetBtn').addEventListener('click', () => { state = sanitize(null); zoom = 1; commit(); toast('Everything is back to the default card'); });
+  $('#copyBtn').addEventListener('click', async () => {
+    const txt = JSON.stringify(state.cards.slice(0, nCards()).map((c) => ({ khmer: c.khmer, pinyin: c.pinyin, chinese: c.chinese, phonetic: c.phonetic })), null, 2);
+    try { await navigator.clipboard.writeText(txt); toast('Card data copied'); }
+    catch (e) {
+      const ta = document.createElement('textarea'); ta.value = txt; ta.style.cssText = 'position:fixed;opacity:0';
+      document.body.appendChild(ta); ta.select();
+      let ok = false; try { ok = document.execCommand('copy'); } catch (err) { /* ignore */ }
+      ta.remove(); toast(ok ? 'Card data copied' : 'Copy was blocked in this view');
+    }
+  });
+
+  /* ---------- Export ---------- */
+  let downloads = null, lastBlob = null, busy = false;
+  async function getDownloads() {
+    if (downloads) return downloads;
+    for (let i = 0; i < 24 && !(window.claude && window.claude.use); i++) await new Promise((r) => setTimeout(r, 150));
+    try { downloads = (window.claude && window.claude.use) ? await window.claude.use('downloads') : null; } catch (e) { downloads = null; }
+    return downloads;
+  }
+  getDownloads();
+  const modal = $('#modal');
+  function closeModal() { modal.hidden = true; $('#modalImg').removeAttribute('src'); $('#exportBtn').focus(); }
+  $('#modalX').addEventListener('click', closeModal);
+  modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !modal.hidden) closeModal(); });
+  function fileName() {
+    const base = (card().pinyin || '').normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/gi, '-').replace(/^-|-$/g, '').toLowerCase();
+    return `cac-poster-${nCards() > 1 ? 'sheet' : (base || 'card')}.png`;
+  }
+  $('#exportBtn').addEventListener('click', async () => {
+    if (busy) return;
+    busy = true;
+    const btn = $('#exportBtn'), html = btn.innerHTML;
+    btn.disabled = true; btn.textContent = 'Rendering…';
+    try {
+      if (document.activeElement && document.activeElement.blur) document.activeElement.blur();
+      if (document.fonts && document.fonts.ready) await document.fonts.ready;
+      const F = FORMATS[state.format];
+      paintPoster(poster, state, true);
+      poster.classList.add('exporting');
+      const canvas = await html2canvas(poster, {
+        scale: F.out / F.w, backgroundColor: null, useCORS: true, logging: false,
+        onclone: (doc) => {
+          const p = doc.getElementById('poster');
+          p.style.transform = 'none'; p.style.position = 'relative'; p.style.left = '0'; p.style.top = '0';
+          [...doc.body.children].forEach((el) => { if (!/^(STYLE|LINK|SCRIPT)$/.test(el.tagName)) el.remove(); });
+          doc.body.appendChild(p);
+          doc.body.style.cssText = 'margin:0;padding:0;height:auto;overflow:visible;background:transparent';
+          doc.documentElement.style.cssText = 'padding:0;height:auto';
+        }
+      });
+      poster.classList.remove('exporting');
+      const blob = await new Promise((res) => canvas.toBlob(res, 'image/png'));
+      if (!blob) throw new Error('empty');
+      lastBlob = blob;
+      $('#modalImg').src = canvas.toDataURL('image/png');
+      $('#modalHint').textContent = `PNG, ${canvas.width} × ${canvas.height} px. Press Save PNG and confirm. If saving is blocked, use Copy image or right-click the picture.`;
+      modal.hidden = false;
+      $('#saveBtn').focus();
+      getDownloads();
+    } catch (err) {
+      poster.classList.remove('exporting');
+      toast('Export failed. Try again in a moment.');
+    } finally {
+      btn.disabled = false; btn.innerHTML = html; busy = false;
+    }
+  });
+  $('#saveBtn').addEventListener('click', async () => {
+    if (!lastBlob) return;
+    const dl = await getDownloads();
+    if (!dl) { toast('Saving is not available in this view. Use Copy image, or right-click the picture and choose Save image.'); return; }
+    try { await dl.save({ filename: fileName(), data: lastBlob }); closeModal(); lastBlob = null; toast('PNG saved. The preview is closed.'); }
+    catch (e) {
+      if (e && e.code === 'declined') return;
+      toast('The save was blocked (' + ((e && e.code) || 'error') + '). Use Copy image, or right-click the picture.');
+    }
+  });
+  $('#copyImgBtn').addEventListener('click', async () => {
+    if (!lastBlob) return;
+    try { await navigator.clipboard.write([new ClipboardItem({ 'image/png': lastBlob })]); toast('Image copied. Paste it into Facebook, Messenger or Telegram.'); }
+    catch (e) { toast('Copying is blocked here. Right-click the picture and choose Copy image.'); }
+  });
+
+  /* ---------- Boot ---------- */
+  renderLib();
+  renderMine();
+  selectTab('templates', false);
+  render();
+  buildThumbs();
+  if (document.fonts) {
+    document.fonts.ready.then(() => { render(); buildThumbs(); });
+    let ft;
+    if (document.fonts.addEventListener) document.fonts.addEventListener('loadingdone', () => { clearTimeout(ft); ft = setTimeout(() => { render(); scheduleThumbs(); }, 120); });
+  }
+})();
+</script>
+
+</body></html>
