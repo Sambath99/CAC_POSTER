@@ -6,30 +6,28 @@
 <style>
 /* Layout: CAC dashboard shell. White header with the round red badge, a left rail with an icon nav (Templates, Content, Design, Layout) beside a panel, and a gray dot-grid stage holding the poster fitted to the screen. On phones the rail docks to the bottom. */
 :root {
-  --bg: #F9FAFB; --surface: #FFFFFF; --surface-2: #F3F4F6; --field: #FFFFFF; --line: #E5E7EB;
-  --ink: #1F2937; --muted: #6B7280; --head: #111827;
-  --accent: #DC2626; --accent-ink: #FFFFFF; --accent-soft: #FEE2E2; --track: #E5E7EB; --dot: #E5E7EB;
+  --bg: #F4F6F9;
+  --surface: #FFFFFF;
+  --surface-2: #EEF1F6;
+  --field: #FFFFFF;
+  --line: #E1E5EC;
+  --ink: #1F2937;
+  --muted: #64748B;
+  --head: #0F172A;
+  --accent: #DC2626;
+  --accent-ink: #FFFFFF;
+  --accent-soft: #FEE2E2;
+  --track: #E2E8F0;
+  --dot: #CBD5E1;
   --ring: rgba(220, 38, 38, .22);
-  --ok: #059669; --ok-soft: #ECFDF5; --warn: #D97706; --danger: #EF4444;
-  --shadow: 0 1px 3px rgba(17, 24, 39, .08), 0 4px 14px rgba(17, 24, 39, .06);
+  --ok: #059669;
+  --ok-soft: #ECFDF5;
+  --warn: #D97706;
+  --danger: #EF4444;
+  --shadow: 0 1px 3px rgba(15, 23, 42, .06), 0 6px 18px rgba(15, 23, 42, .05);
   --font-kh: 'Khmer OS Battambang', 'Battambang', 'Kantumruy Pro', 'Noto Sans Khmer', sans-serif;
   --font-lt: 'Inter', system-ui, 'Segoe UI', sans-serif;
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #0B0F17; --surface: #111827; --surface-2: #1F2937; --field: #0B1220; --line: #2B3547;
-    --ink: #E5E7EB; --muted: #9CA3AF; --head: #FFFFFF; --accent: #EF4444; --accent-soft: #3B1517;
-    --track: #374151; --dot: #1A2230; --ring: rgba(239, 68, 68, .35); --ok: #34D399; --ok-soft: #052E22;
-    --shadow: 0 1px 3px rgba(0, 0, 0, .4), 0 4px 14px rgba(0, 0, 0, .3);
-    color-scheme: dark;
-  }
-}
-:root[data-theme="dark"] {
-  --bg: #0B0F17; --surface: #111827; --surface-2: #1F2937; --field: #0B1220; --line: #2B3547;
-  --ink: #E5E7EB; --muted: #9CA3AF; --head: #FFFFFF; --accent: #EF4444; --accent-soft: #3B1517;
-  --track: #374151; --dot: #1A2230; --ring: rgba(239, 68, 68, .35); --ok: #34D399; --ok-soft: #052E22;
-  --shadow: 0 1px 3px rgba(0, 0, 0, .4), 0 4px 14px rgba(0, 0, 0, .3);
-  color-scheme: dark;
+  color-scheme: light;
 }
 *, *::before, *::after { box-sizing: border-box; }
 html, body { height: 100%; }
@@ -39,6 +37,8 @@ button { cursor: pointer; }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 [lang="km"] { font-family: var(--font-kh); letter-spacing: normal; }
 .ic { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.spin { animation: spin .85s linear infinite; }
 .app { height: 100%; display: flex; flex-direction: column; }
 
 /* Header */
@@ -310,10 +310,6 @@ input[type="range"]:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 4px 
           <!-- CONTENT -->
           <section class="panel" role="tabpanel" id="panel-content" aria-labelledby="tab-content" hidden>
             <div class="pane-title"><h2>Content</h2><span lang="km">មាតិកា</span></div>
-            <div class="group" id="cardsGroup" hidden>
-              <div class="group-head"><h3>Card to edit</h3><button class="btn sm" id="fillAll" type="button">Fill all with presets</button></div>
-              <div class="chips-n" id="cardChips"></div>
-            </div>
             <div class="group">
               <div class="group-head"><h3>Quick presets</h3><span>Tap to load a word</span></div>
               <div class="presets" id="presets"></div>
@@ -391,10 +387,6 @@ input[type="range"]:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 4px 
               <div class="opts c3" id="fmtOpts" role="radiogroup" aria-label="Canvas size"></div>
             </div>
             <div class="group">
-              <div class="group-head"><h3>Cards on the poster</h3><span>Make a lesson sheet</span></div>
-              <div class="opts c4" id="colOpts" role="radiogroup" aria-label="Cards on the poster"></div>
-            </div>
-            <div class="group">
               <div class="group-head"><h3>Text layout</h3></div>
               <div class="opts c4" id="layOpts" role="radiogroup" aria-label="Text layout"></div>
             </div>
@@ -405,11 +397,6 @@ input[type="range"]:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 4px 
             <div class="group">
               <div class="group-head"><h3>Position</h3></div>
               <div class="sliders" id="posSl"></div>
-            </div>
-            <div class="group" id="gGutter" hidden>
-              <div class="group-head"><h3>Gutter between cards</h3></div>
-              <div class="sliders" id="gutSl"></div>
-              <div class="colors" id="gutColor"></div>
             </div>
             <div class="switch-row">
               <div><b>Shrink long words to fit</b><small>Keeps every line inside its card. The size above becomes the maximum.</small></div>
@@ -523,13 +510,7 @@ input[type="range"]:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 4px 
     wide: { name: 'Wide', ratio: '16:9', w: 800, h: 450, out: 1920 }
   };
   const COLLAGES = {
-    single: { name: 'Single', slots: [[0, 0, 1, 1]] },
-    v2: { name: '2 across', slots: [[0, 0, .5, 1], [.5, 0, .5, 1]] },
-    h2: { name: '2 stacked', slots: [[0, 0, 1, .5], [0, .5, 1, .5]] },
-    g4: { name: '2 × 2', slots: [[0, 0, .5, .5], [.5, 0, .5, .5], [0, .5, .5, .5], [.5, .5, .5, .5]] },
-    big3: { name: '1 + 3', slots: [[0, 0, .66, 1], [.66, 0, .34, 1 / 3], [.66, 1 / 3, .34, 1 / 3], [.66, 2 / 3, .34, 1 / 3]] },
-    t23: { name: '2 + 3', slots: [[0, 0, .5, .55], [.5, 0, .5, .55], [0, .55, 1 / 3, .45], [1 / 3, .55, 1 / 3, .45], [2 / 3, .55, 1 / 3, .45]] },
-    g6: { name: '2 × 3', slots: [[0, 0, .5, 1 / 3], [.5, 0, .5, 1 / 3], [0, 1 / 3, .5, 1 / 3], [.5, 1 / 3, .5, 1 / 3], [0, 2 / 3, .5, 1 / 3], [.5, 2 / 3, .5, 1 / 3]] }
+    single: { name: 'Single', slots: [[0, 0, 1, 1]] }
   };
   const LAYOUTS = {
     classic: { name: 'Classic', order: ['khmer', 'pinyin', 'chinese', 'phonetic'] },
@@ -569,18 +550,14 @@ input[type="range"]:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 4px 
     { id: 'bar', name: 'Editorial Bar', sub: 'Square', format: 'square', collage: 'single', d: { bg: 'grid', layout: 'bar', kf: 'kantumruy', kw: 700, cf: 'notoserif', sizes: { khmer: 58, pinyin: 38, chinese: 118, phonetic: 42 }, wm: NOWM, badge: { pos: 'br', size: 52 } } },
     { id: 'split', name: 'Split Wide', sub: 'Wide 16:9', format: 'wide', collage: 'single', d: { bg: 'paper', layout: 'split', kf: 'kantumruy', kw: 700, cf: 'notoserif', sizes: { khmer: 54, pinyin: 38, chinese: 130, phonetic: 42 }, wm: NOWM, badge: { pos: 'br', size: 48 } } },
     { id: 'mist', name: 'Mountain Mist', sub: 'Poster 2:3', format: 'poster', collage: 'single', d: { bg: 'mist', kf: 'moul', cf: 'mashan', pf: 'display', sizes: { khmer: 66, pinyin: 40, chinese: 120, phonetic: 44 }, wm: NOWM } },
-    { id: 'story', name: 'Story Crimson', sub: 'Story 9:16', format: 'story', collage: 'single', d: { bg: 'crimson', layout: 'khmerHero', kf: 'koulen', cf: 'notosans', sizes: { khmer: 66, pinyin: 40, chinese: 128, phonetic: 44 }, wm: { mode: 'logo', op: 12, size: 80 }, badge: { pos: 'bc', size: 60 } } },
-    { id: 'sheet13', name: 'Sheet 1 + 3', sub: 'Lesson sheet', format: 'square', collage: 'big3', cgap: 6, d: {} },
-    { id: 'sheet23', name: 'Sheet 2 + 3', sub: 'Lesson sheet', format: 'square', collage: 't23', cgap: 6, d: { bg: 'rose', layout: 'phoneticTop', kf: 'kantumruy', kw: 700, cf: 'notoserif', pf: 'serif', pw: 500, sizes: { khmer: 58, pinyin: 34, chinese: 112, phonetic: 40 }, wm: { mode: 'text', text: 'Chinese Academy Cambodia', op: 10, size: 50 } } },
-    { id: 'quad', name: 'Quad Grid', sub: '2 × 2 sheet', format: 'square', collage: 'g4', cgap: 8, d: { bg: 'grid', kf: 'kantumruy', kw: 700, cf: 'notoserif', sizes: { khmer: 56, pinyin: 38, chinese: 118, phonetic: 42 }, wm: NOWM, badge: { pos: 'br', size: 56 } } },
-    { id: 'duo', name: 'Duo Cards', sub: '2 across, wide', format: 'wide', collage: 'v2', cgap: 8, d: { bg: 'redframe', kf: 'moul', cf: 'notoserif', pf: 'serif', sizes: { khmer: 58, pinyin: 38, chinese: 120, phonetic: 42 }, wm: NOWM } }
+    { id: 'story', name: 'Story Crimson', sub: 'Story 9:16', format: 'story', collage: 'single', d: { bg: 'crimson', layout: 'khmerHero', kf: 'koulen', cf: 'notosans', sizes: { khmer: 66, pinyin: 40, chinese: 128, phonetic: 44 }, wm: { mode: 'logo', op: 12, size: 80 }, badge: { pos: 'bc', size: 60 } } }
   ];
 
   /* ---------- State and storage ---------- */
   const K_STATE = 'cac-poster-studio-v1', K_IMGS = 'cac-poster-images-v1', K_TPL = 'cac-poster-templates-v1';
   const DEFAULT = {
-    format: 'poster', collage: 'single', cgap: 8, gutter: '#FFFFFF', active: 0,
-    cards: PRESETS.map((p) => ({ khmer: p.khmer, pinyin: p.pinyin, chinese: p.chinese, phonetic: p.phonetic })),
+    format: 'poster', collage: 'single', active: 0,
+    cards: [{ khmer: PRESETS[0].khmer, pinyin: PRESETS[0].pinyin, chinese: PRESETS[0].chinese, phonetic: PRESETS[0].phonetic }],
     d: mkD({})
   };
   const lsGet = (k, fb) => { try { const v = JSON.parse(localStorage.getItem(k) || 'null'); return v == null ? fb : v; } catch (e) { return fb; } };
@@ -596,11 +573,12 @@ input[type="range"]:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 4px 
     const out = clone(DEFAULT);
     const s = st && typeof st === 'object' ? st : {};
     if (FORMATS[s.format]) out.format = s.format;
-    if (COLLAGES[s.collage]) out.collage = s.collage;
-    if (typeof s.cgap === 'number') out.cgap = s.cgap;
-    if (typeof s.gutter === 'string') out.gutter = s.gutter;
-    if (typeof s.active === 'number') out.active = s.active;
-    if (Array.isArray(s.cards)) s.cards.slice(0, 6).forEach((c, i) => FIELDS.forEach((f) => { if (c && typeof c[f] === 'string') out.cards[i][f] = c[f]; }));
+    out.collage = 'single';
+    out.active = 0;
+    if (Array.isArray(s.cards) && s.cards.length && s.cards[0]) {
+      const c = s.cards[0];
+      FIELDS.forEach((f) => { if (c && typeof c[f] === 'string') out.cards[0][f] = c[f]; });
+    }
     if (s.d && typeof s.d === 'object') {
       const d = out.d;
       Object.keys(d).forEach((k) => {
@@ -708,8 +686,22 @@ input[type="range"]:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 4px 
     return (bgCache[key] = 'url("data:image/svg+xml,' + encodeURIComponent(svg) + '")');
   }
 
-  const CAC_LOGO = 'url("data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"><circle cx="60" cy="60" r="58" fill="#DC2626"/><circle cx="60" cy="60" r="49" fill="none" stroke="#fff" stroke-width="2.5"/><text x="60" y="68" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="32" font-weight="800" fill="#fff">CAC</text><text x="60" y="86" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="700" letter-spacing="2" fill="#fff">ACADEMY</text></svg>') + '")';
+  const CAC_SVG = '<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 120 120" style="display:block;width:100%;height:100%"><circle cx="60" cy="60" r="58" fill="#DC2626"/><circle cx="60" cy="60" r="49" fill="none" stroke="#fff" stroke-width="2.5"/><text x="60" y="68" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="32" font-weight="800" fill="#fff">CAC</text><text x="60" y="86" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="700" letter-spacing="2" fill="#fff">ACADEMY</text></svg>';
+  const CAC_LOGO = 'url("data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120"><circle cx="60" cy="60" r="58" fill="#DC2626"/><circle cx="60" cy="60" r="49" fill="none" stroke="#fff" stroke-width="2.5"/><text x="60" y="68" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="32" font-weight="800" fill="#fff">CAC</text><text x="60" y="86" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="700" letter-spacing="2" fill="#fff">ACADEMY</text></svg>') + '")';
   const logoUrl = (d) => { const i = d.logo !== 'cac' && imgById(d.logo); return i ? `url("${i.url}")` : CAC_LOGO; };
+  function setLogoContent(el, logoId) {
+    el.textContent = '';
+    const img = logoId !== 'cac' && imgById(logoId);
+    if (img) {
+      const im = document.createElement('img');
+      im.src = img.url;
+      im.alt = '';
+      im.style.cssText = 'width:100%;height:100%;object-fit:contain;display:block;pointer-events:none';
+      el.appendChild(im);
+    } else {
+      el.innerHTML = CAC_SVG;
+    }
+  }
   function isDark(d) {
     if (DARK_BG[d.bg]) return true;
     const lum = (hex) => { const n = parseInt(hex.slice(1), 16); return (.299 * (n >> 16) + .587 * ((n >> 8) & 255) + .114 * (n & 255)) / 255; };
@@ -831,36 +823,72 @@ input[type="range"]:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 4px 
     wm.style.cssText = ''; wm.textContent = '';
     if (W.mode === 'logo') {
       const sz = Math.min(w, h) * W.size / 100;
-      Object.assign(wm.style, { left: '50%', top: '50%', width: sz + 'px', height: sz + 'px', marginLeft: (-sz / 2) + 'px', marginTop: (-sz / 2 + D.y * k) + 'px', backgroundImage: logoUrl(D), backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center', opacity: W.op / 100 });
+      const leftPx = (w - sz) / 2;
+      const topPx = (h - sz) / 2 + (D.y * k);
+      Object.assign(wm.style, {
+        position: 'absolute',
+        left: leftPx + 'px',
+        top: topPx + 'px',
+        width: sz + 'px',
+        height: sz + 'px',
+        margin: '0',
+        borderRadius: '50%',
+        overflow: 'hidden',
+        background: 'transparent',
+        opacity: String(W.op / 100),
+        pointerEvents: 'none'
+      });
+      setLogoContent(wm, D.logo);
     } else if (W.mode === 'text') {
       wm.textContent = W.text;
-      Object.assign(wm.style, { left: '50%', top: '50%', transform: 'translate(-50%, -50%) rotate(-32deg)', whiteSpace: 'nowrap', fontWeight: '700', fontFamily: PF.sans.css, fontSize: (36 * k * W.size / 50) + 'px', color: dark ? '#FFFFFF' : '#1F2937', opacity: W.op / 100 });
+      Object.assign(wm.style, {
+        position: 'absolute',
+        left: '50%',
+        top: '50%',
+        transform: 'translate(-50%, -50%) rotate(-32deg)',
+        whiteSpace: 'nowrap',
+        fontWeight: '700',
+        fontFamily: PF.sans.css,
+        fontSize: (36 * k * W.size / 50) + 'px',
+        color: dark ? '#FFFFFF' : '#1F2937',
+        opacity: String(W.op / 100),
+        pointerEvents: 'none'
+      });
     }
 
     const B = D.badge, bd = P.badge;
-    bd.style.cssText = ''; bd.style.display = B.pos === 'none' ? 'none' : 'block';
+    bd.style.cssText = ''; bd.textContent = ''; bd.style.display = B.pos === 'none' ? 'none' : 'block';
     if (B.pos !== 'none') {
       const sz = B.size * k, mg = Math.min(w, h) * .045;
-      Object.assign(bd.style, { width: sz + 'px', height: sz + 'px', backgroundImage: logoUrl(D), backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' });
-      if (B.pos[0] === 't') bd.style.top = mg + 'px'; else bd.style.bottom = mg + 'px';
-      if (B.pos === 'bc') { bd.style.left = '50%'; bd.style.marginLeft = (-sz / 2) + 'px'; }
-      else if (B.pos[1] === 'l') bd.style.left = mg + 'px'; else bd.style.right = mg + 'px';
+      let left = mg, top = mg;
+      if (B.pos[0] === 'b') top = h - mg - sz;
+      if (B.pos === 'bc') left = (w - sz) / 2;
+      else if (B.pos[1] === 'r') left = w - mg - sz;
+      Object.assign(bd.style, {
+        position: 'absolute',
+        left: left + 'px',
+        top: top + 'px',
+        width: sz + 'px',
+        height: sz + 'px',
+        margin: '0',
+        borderRadius: '50%',
+        overflow: 'hidden',
+        background: 'transparent',
+        pointerEvents: 'none'
+      });
+      setLogoContent(bd, D.logo);
     }
   }
 
   function makePoster() { const r = document.createElement('div'); r.className = 'poster'; r._cards = []; return r; }
   function paintPoster(root, st, editable) {
-    const F = FORMATS[st.format], C = COLLAGES[st.collage], n = C.slots.length;
+    const F = FORMATS[st.format];
     root.style.width = F.w + 'px'; root.style.height = F.h + 'px';
-    while (root._cards.length < n) { const c = createCard(editable, root._cards.length); root.appendChild(c); root._cards.push(c); }
-    while (root._cards.length > n) root._cards.pop().remove();
-    const g = n > 1 ? st.cgap : 0;
-    root.style.background = n > 1 ? st.gutter : 'transparent';
-    C.slots.forEach(([fx, fy, fw, fh], i) => {
-      const x = Math.round(fx * F.w + g / 2), y = Math.round(fy * F.h + g / 2);
-      const w = Math.round((fx + fw) * F.w - g / 2) - x, h = Math.round((fy + fh) * F.h - g / 2) - y;
-      styleCard(root._cards[i], st.d, st.cards[i], x, y, w, h, { multi: n > 1, active: editable && n > 1 && i === st.active });
-    });
+    while (root._cards.length < 1) { const c = createCard(editable, 0); root.appendChild(c); root._cards.push(c); }
+    while (root._cards.length > 1) root._cards.pop().remove();
+    root.style.background = 'transparent';
+    const c = (st.cards && st.cards[0]) || card();
+    styleCard(root._cards[0], st.d, c, 0, 0, F.w, F.h, { multi: false, active: false });
   }
 
   const poster = $('#poster');
@@ -884,8 +912,8 @@ input[type="range"]:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 4px 
   /* ---------- Controls ---------- */
   const syncFns = [];
   const D = () => state.d;
-  const card = () => state.cards[state.active];
-  const nCards = () => COLLAGES[state.collage].slots.length;
+  const card = () => (state.cards && state.cards[0]) || PRESETS[0];
+  const nCards = () => 1;
 
   function addOpt(host, html, isOn, pick, cls) {
     const b = document.createElement('button');
@@ -956,21 +984,6 @@ input[type="range"]:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 4px 
   });
   syncFns.push(() => presetBtns.forEach((b, i) => b.setAttribute('aria-pressed', String(PRESETS[i].khmer === card().khmer && PRESETS[i].chinese === card().chinese))));
 
-  const chipBtns = [0, 1, 2, 3, 4, 5].map((i) => {
-    const b = document.createElement('button');
-    b.type = 'button'; b.className = 'cn'; b.textContent = 'Card ' + (i + 1); b.setAttribute('aria-pressed', 'false');
-    b.addEventListener('click', () => { state.active = i; commit(); });
-    $('#cardChips').appendChild(b);
-    return b;
-  });
-  $('#fillAll').addEventListener('click', () => {
-    for (let i = 0; i < nCards(); i++) FIELDS.forEach((f) => { state.cards[i][f] = PRESETS[i % PRESETS.length][f]; });
-    commit(); toast('Filled the cards with presets');
-  });
-  syncFns.push(() => {
-    $('#cardsGroup').hidden = nCards() < 2;
-    chipBtns.forEach((b, i) => { b.hidden = i >= nCards(); b.setAttribute('aria-pressed', String(i === state.active)); });
-  });
 
   /* Design: backdrop */
   const bgThumbs = {};
@@ -1048,11 +1061,6 @@ input[type="range"]:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 4px 
   });
   syncFns.push(() => { const F = FORMATS[state.format]; $('#fmtInfo').textContent = `${F.w} × ${F.h}`; });
 
-  function collageIcon(id) {
-    const n = 40; let o = '';
-    COLLAGES[id].slots.forEach(([x, y, w, h]) => { o += `<rect x="${x * n + 1}" y="${y * n + 1}" width="${w * n - 2}" height="${h * n - 2}" rx="2" fill="currentColor" opacity=".6"/>`; });
-    return `<svg class="mini" viewBox="0 0 ${n} ${n}" width="34" height="34" aria-hidden="true">${o}</svg>`;
-  }
   function layoutIcon(id) {
     const L = LAYOUTS[id];
     const spec = { khmer: ['#DC2626', 7, 26], pinyin: ['#9CA3AF', 3.5, 20], chinese: ['#374151', 13, 28], phonetic: ['#2B3294', 5, 20] };
@@ -1073,9 +1081,6 @@ input[type="range"]:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 4px 
     }
     return `<svg class="mini" viewBox="0 0 44 60" width="30" height="42" aria-hidden="true" style="color:inherit">${o}</svg>`;
   }
-  Object.entries(COLLAGES).forEach(([k, c]) => {
-    addOpt($('#colOpts'), `${collageIcon(k)}<span class="nm">${c.name}</span>`, () => state.collage === k, () => { state.collage = k; if (state.active >= COLLAGES[k].slots.length) state.active = 0; commit(); });
-  });
   Object.entries(LAYOUTS).forEach(([k, l]) => {
     addOpt($('#layOpts'), `${layoutIcon(k)}<span class="nm">${l.name}</span>`, () => D().layout === k, () => { D().layout = k; commit(); });
   });
@@ -1084,9 +1089,6 @@ input[type="range"]:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 4px 
   });
   addSlider($('#posSl'), 'y', 'Move text up or down', -120, 120, () => D().y, (v) => { D().y = v; }, (v) => (v > 0 ? '+' : '') + v);
   addSlider($('#posSl'), 'gap', 'Space between lines', 0, 60, () => D().gap, (v) => { D().gap = v; }, (v) => v + 'px');
-  addSlider($('#gutSl'), 'cgap', 'Gutter width', 0, 24, () => state.cgap, (v) => { state.cgap = v; }, (v) => v + 'px');
-  colorRow($('#gutColor'), 'Gutter colour', () => state.gutter, (v) => { state.gutter = v; }, 'col-gutter');
-  syncFns.push(() => { $('#gGutter').hidden = nCards() < 2; });
   $('#resetLayout').addEventListener('click', () => { Object.assign(D(), { sizes: clone(BASE_D.sizes), y: 0, gap: 14, fit: true }); commit(); toast('Text layout reset'); });
   const fitToggle = $('#fitToggle');
   fitToggle.addEventListener('change', () => { D().fit = fitToggle.checked; commit(); });
@@ -1099,17 +1101,11 @@ input[type="range"]:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 4px 
   poster.addEventListener('input', (e) => {
     const t = e.target.closest && e.target.closest('.t');
     if (!t) return;
-    const i = +t.closest('.card').dataset.i;
-    state.active = i;
-    state.cards[i][t.dataset.f] = t.textContent.replace(/\n/g, '');
+    state.active = 0;
+    card()[t.dataset.f] = t.textContent.replace(/\n/g, '');
     commit();
   });
-  poster.addEventListener('focusin', (e) => {
-    const c = e.target.closest && e.target.closest('.card');
-    if (!c) return;
-    const i = +c.dataset.i;
-    if (i !== state.active) { state.active = i; render(); save(); }
-  });
+  poster.addEventListener('focusin', () => { state.active = 0; });
   poster.addEventListener('keydown', (e) => { if (e.key === 'Enter' && e.target.closest('.t')) { e.preventDefault(); e.target.blur(); } });
   poster.addEventListener('paste', (e) => {
     if (!e.target.closest || !e.target.closest('.t')) return;
@@ -1216,7 +1212,7 @@ input[type="range"]:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 4px 
   }
   $('#tplSave').addEventListener('click', () => {
     const name = $('#tplName').value.trim() || `My design ${myTpl.length + 1}`;
-    myTpl.push({ id: uid(), name, format: state.format, collage: state.collage, cgap: state.cgap, gutter: state.gutter, sub: 'My design', d: clone(state.d) });
+    myTpl.push({ id: uid(), name, format: state.format, collage: 'single', sub: 'My design', d: clone(state.d) });
     const ok = lsSet(K_TPL, myTpl);
     $('#tplName').value = ''; renderMine();
     toast(ok ? `Saved "${name}" in this browser` : 'Could not save. Browser storage is blocked.');
@@ -1304,7 +1300,8 @@ input[type="range"]:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 4px 
   /* ---------- Reset and copy ---------- */
   $('#resetBtn').addEventListener('click', () => { state = sanitize(null); zoom = 1; commit(); toast('Everything is back to the default card'); });
   $('#copyBtn').addEventListener('click', async () => {
-    const txt = JSON.stringify(state.cards.slice(0, nCards()).map((c) => ({ khmer: c.khmer, pinyin: c.pinyin, chinese: c.chinese, phonetic: c.phonetic })), null, 2);
+    const c = card();
+    const txt = JSON.stringify({ khmer: c.khmer, pinyin: c.pinyin, chinese: c.chinese, phonetic: c.phonetic }, null, 2);
     try { await navigator.clipboard.writeText(txt); toast('Card data copied'); }
     catch (e) {
       const ta = document.createElement('textarea'); ta.value = txt; ta.style.cssText = 'position:fixed;opacity:0';
@@ -1324,30 +1321,45 @@ input[type="range"]:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 4px 
   }
   getDownloads();
   const modal = $('#modal');
-  function closeModal() { modal.hidden = true; $('#modalImg').removeAttribute('src'); $('#exportBtn').focus(); }
+  function closeModal() {
+    modal.hidden = true;
+    $('#modalImg').removeAttribute('src');
+    const saveBtn = $('#saveBtn');
+    if (saveBtn) {
+      saveBtn.disabled = false;
+      saveBtn.innerHTML = '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg>Save PNG';
+    }
+    $('#exportBtn').focus();
+  }
   $('#modalX').addEventListener('click', closeModal);
   modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !modal.hidden) closeModal(); });
   function fileName() {
     const base = (card().pinyin || '').normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/gi, '-').replace(/^-|-$/g, '').toLowerCase();
-    return `cac-poster-${nCards() > 1 ? 'sheet' : (base || 'card')}.png`;
+    return `cac-poster-${base || 'card'}.png`;
   }
   $('#exportBtn').addEventListener('click', async () => {
     if (busy) return;
     busy = true;
     const btn = $('#exportBtn'), html = btn.innerHTML;
-    btn.disabled = true; btn.textContent = 'Rendering…';
+    btn.disabled = true;
+    btn.innerHTML = '<svg class="ic spin" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-dasharray="28 28"/></svg><span>Preparing PNG…</span>';
     try {
       if (document.activeElement && document.activeElement.blur) document.activeElement.blur();
       if (document.fonts && document.fonts.ready) await document.fonts.ready;
       const F = FORMATS[state.format];
-      paintPoster(poster, state, true);
+      paintPoster(poster, state, false);
       poster.classList.add('exporting');
       const canvas = await html2canvas(poster, {
-        scale: F.out / F.w, backgroundColor: null, useCORS: true, logging: false,
+        scale: F.out / F.w,
+        backgroundColor: null,
+        useCORS: true,
+        logging: false,
         onclone: (doc) => {
           const p = doc.getElementById('poster');
           p.style.transform = 'none'; p.style.position = 'relative'; p.style.left = '0'; p.style.top = '0';
+          doc.querySelectorAll('[contenteditable]').forEach((el) => el.removeAttribute('contenteditable'));
+          doc.querySelectorAll('.t').forEach((el) => { el.style.outline = 'none'; el.style.boxShadow = 'none'; });
           [...doc.body.children].forEach((el) => { if (!/^(STYLE|LINK|SCRIPT)$/.test(el.tagName)) el.remove(); });
           doc.body.appendChild(p);
           doc.body.style.cssText = 'margin:0;padding:0;height:auto;overflow:visible;background:transparent';
@@ -1355,29 +1367,100 @@ input[type="range"]:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 4px 
         }
       });
       poster.classList.remove('exporting');
+      paintPoster(poster, state, true);
       const blob = await new Promise((res) => canvas.toBlob(res, 'image/png'));
       if (!blob) throw new Error('empty');
       lastBlob = blob;
       $('#modalImg').src = canvas.toDataURL('image/png');
-      $('#modalHint').textContent = `PNG, ${canvas.width} × ${canvas.height} px. Press Save PNG and confirm. If saving is blocked, use Copy image or right-click the picture.`;
+      $('#modalHint').textContent = `PNG, ${canvas.width} × ${canvas.height} px. Press Save PNG to download, or use Copy image.`;
       modal.hidden = false;
-      $('#saveBtn').focus();
+      const saveBtn = $('#saveBtn');
+      saveBtn.disabled = false;
+      saveBtn.innerHTML = '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg>Save PNG';
+      saveBtn.focus();
       getDownloads();
     } catch (err) {
       poster.classList.remove('exporting');
+      paintPoster(poster, state, true);
       toast('Export failed. Try again in a moment.');
     } finally {
+      paintPoster(poster, state, true);
       btn.disabled = false; btn.innerHTML = html; busy = false;
     }
   });
+  function triggerDownload(blob, name) {
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = name;
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(() => {
+      a.remove();
+      URL.revokeObjectURL(url);
+    }, 1500);
+  }
   $('#saveBtn').addEventListener('click', async () => {
     if (!lastBlob) return;
+    const saveBtn = $('#saveBtn');
+    const origHtml = saveBtn.innerHTML;
+    saveBtn.disabled = true;
+    saveBtn.innerHTML = '<svg class="ic spin" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-dasharray="28 28"/></svg><span>Downloading…</span>';
+
+    const name = fileName();
     const dl = await getDownloads();
-    if (!dl) { toast('Saving is not available in this view. Use Copy image, or right-click the picture and choose Save image.'); return; }
-    try { await dl.save({ filename: fileName(), data: lastBlob }); closeModal(); lastBlob = null; toast('PNG saved. The preview is closed.'); }
-    catch (e) {
-      if (e && e.code === 'declined') return;
-      toast('The save was blocked (' + ((e && e.code) || 'error') + '). Use Copy image, or right-click the picture.');
+    if (dl && typeof dl.save === 'function') {
+      try {
+        await dl.save({ filename: name, data: lastBlob });
+        saveBtn.innerHTML = '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Downloaded!</span>';
+        toast('PNG downloaded to your computer!');
+        setTimeout(() => {
+          closeModal();
+          lastBlob = null;
+          saveBtn.disabled = false;
+          saveBtn.innerHTML = origHtml;
+        }, 700);
+        return;
+      } catch (e) {
+        if (e && e.code === 'declined') {
+          saveBtn.disabled = false;
+          saveBtn.innerHTML = origHtml;
+          return;
+        }
+      }
+    }
+    try {
+      triggerDownload(lastBlob, name);
+      saveBtn.innerHTML = '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Downloaded!</span>';
+      toast('PNG downloaded to your computer!');
+      setTimeout(() => {
+        closeModal();
+        lastBlob = null;
+        saveBtn.disabled = false;
+        saveBtn.innerHTML = origHtml;
+      }, 700);
+    } catch (e) {
+      const dataUrl = $('#modalImg').src;
+      if (dataUrl) {
+        const a = document.createElement('a');
+        a.href = dataUrl;
+        a.download = name;
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(() => a.remove(), 1500);
+        saveBtn.innerHTML = '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Downloaded!</span>';
+        toast('PNG downloaded to your computer!');
+        setTimeout(() => {
+          closeModal();
+          lastBlob = null;
+          saveBtn.disabled = false;
+          saveBtn.innerHTML = origHtml;
+        }, 700);
+      } else {
+        saveBtn.disabled = false;
+        saveBtn.innerHTML = origHtml;
+        toast('Download was blocked. Right-click the preview image and choose "Save image as".');
+      }
     }
   });
   $('#copyImgBtn').addEventListener('click', async () => {
